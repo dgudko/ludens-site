@@ -7,6 +7,10 @@
 
 All UI copy is taken from these dictionaries.
 
+## Projects data (static export)
+
+Project slugs and content for `/projects` and `/projects/[slug]` live in `src/data/projects.ts`.
+
 ## Where images live
 
 Put images into `public/images/**` and reference them from the i18n dictionaries:

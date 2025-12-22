@@ -43,22 +43,22 @@
       {
         "title": "Разработка игр",
         "description": "Игры, прототипы, системы, пайплайны.",
-        "href": "/#projects"
+        "href": "#projects"
       },
       {
         "title": "Школа",
         "description": "Менторство, разборы, практика, курсы.",
-        "href": "/#school"
+        "href": "#school"
       },
       {
         "title": "Проекты",
         "description": "Активные, в разработке и концепты.",
-        "href": "/#projects"
+        "href": "#projects"
       },
       {
         "title": "Консультации",
         "description": "Продукт, продакшен, технологии и дизайн-решения.",
-        "href": "/#consulting"
+        "href": "#consulting"
       }
     ]
   },
@@ -88,6 +88,7 @@
     "statuses": {
       "active": "активный",
       "inProgress": "в разработке",
+      "in_progress": "в разработке",
       "concept": "концепт"
     },
     "items": [

@@ -43,22 +43,22 @@
       {
         "title": "Game Development",
         "description": "Games, prototypes, systems, pipelines.",
-        "href": "/#projects"
+        "href": "#projects"
       },
       {
         "title": "School",
         "description": "Mentorship, reviews, practice, courses.",
-        "href": "/#school"
+        "href": "#school"
       },
       {
         "title": "Projects",
         "description": "Active, in progress, and concepts.",
-        "href": "/#projects"
+        "href": "#projects"
       },
       {
         "title": "Consulting",
         "description": "Product, production, tech, and design decisions.",
-        "href": "/#consulting"
+        "href": "#consulting"
       }
     ]
   },
@@ -88,6 +88,7 @@
     "statuses": {
       "active": "active",
       "inProgress": "in progress",
+      "in_progress": "in progress",
       "concept": "concept"
     },
     "items": [
