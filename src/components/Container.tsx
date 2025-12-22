@@ -1,4 +1,4 @@
-import { cn } from "@/src/ui/cn";
+import { cn } from "@/ui/cn";
 
 export function Container({
   children,

@@ -1,4 +1,4 @@
-import { cn } from "@/src/ui/cn";
+import { cn } from "@/ui/cn";
 import { Container } from "@/components/Container";
 
 export function Section({
@@ -41,4 +41,3 @@ export function Section({
     </section>
   );
 }
-

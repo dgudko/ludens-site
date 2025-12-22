@@ -1,13 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { useI18n } from "@/src/i18n/I18nProvider";
-import type { Project, ProjectStatus } from "@/src/data/projects";
+import { useI18n } from "@/i18n/I18nProvider";
+import type { Project, ProjectStatus } from "@/data/projects";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 
 function statusLabelKey(status: ProjectStatus | undefined) {
   return `projects.statuses.${status ?? "concept"}` as const;
+}
+
+function isBulletLine(line: string) {
+  return line.startsWith("- ") || line.startsWith("• ") || line.startsWith("* ");
+}
+
+function stripBulletPrefix(line: string) {
+  return line.replace(/^(-\s+|•\s+|\*\s+)/, "");
 }
 
 export function ProjectPageClient({ project }: { project: Project }) {
@@ -32,16 +40,15 @@ export function ProjectPageClient({ project }: { project: Project }) {
       .map((l) => l.trim())
       .filter(Boolean);
 
-    const isList =
-      lines.length > 1 && lines.every((l) => l.startsWith("- ") || l.startsWith("• "));
+    const isList = lines.length > 1 && lines.every(isBulletLine);
 
     if (isList) {
       return (
         <ul className="space-y-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-          {lines.map((l) => (
-            <li key={l} className="flex gap-2">
+          {lines.map((l, index) => (
+            <li key={`${index}:${l}`} className="flex gap-2">
               <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
-              <span>{l.replace(/^(-\s+|•\s+)/, "")}</span>
+              <span>{stripBulletPrefix(l)}</span>
             </li>
           ))}
         </ul>
@@ -49,7 +56,7 @@ export function ProjectPageClient({ project }: { project: Project }) {
     }
 
     return (
-      <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-300 whitespace-pre-line">
+      <p className="whitespace-pre-line text-sm leading-6 text-zinc-600 dark:text-zinc-300">
         {block}
       </p>
     );
@@ -103,9 +110,7 @@ export function ProjectPageClient({ project }: { project: Project }) {
             <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/15 dark:bg-zinc-950">
               <div className="space-y-4">
                 {blocks.length ? (
-                  blocks.map((b, index) => (
-                    <div key={`${index}:${b.slice(0, 24)}`}>{renderBlock(b)}</div>
-                  ))
+                  blocks.map((b, index) => <div key={`${index}:${b.slice(0, 24)}`}>{renderBlock(b)}</div>)
                 ) : (
                   <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">
                     {t("pages.projects.detailsLead")}
@@ -136,3 +141,4 @@ export function ProjectPageClient({ project }: { project: Project }) {
     </div>
   );
 }
+

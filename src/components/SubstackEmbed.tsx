@@ -1,10 +1,9 @@
-export function SubstackEmbed({
-  src,
-  title,
-}: {
+type SubstackEmbedProps = {
   src: string;
   title?: string;
-}) {
+};
+
+export function SubstackEmbed({ src, title }: SubstackEmbedProps) {
   if (!src) return null;
 
   return (
@@ -19,4 +18,3 @@ export function SubstackEmbed({
     </div>
   );
 }
-

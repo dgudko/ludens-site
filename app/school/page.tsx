@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useI18n } from "@/src/i18n/I18nProvider";
+import { useI18n } from "@/i18n/I18nProvider";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { SubstackEmbed } from "@/components/SubstackEmbed";
-import { SUBSTACK_EMBED_URL } from "@/src/config/substack";
+import { SUBSTACK_EMBED_URL } from "@/config/substack";
 
 export default function SchoolPage() {
   const { t, ta } = useI18n();
@@ -22,7 +22,7 @@ export default function SchoolPage() {
           </p>
           <div className="mt-6">
             <Link
-              href="/contacts"
+              href="/contacts/"
               className="inline-flex h-11 items-center justify-center rounded-full bg-zinc-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
             >
               {t("pages.school.cta")}
@@ -95,7 +95,7 @@ export default function SchoolPage() {
               {t("pages.school.finalBody")}
             </div>
             <Link
-              href="/contacts"
+              href="/contacts/"
               className="inline-flex h-11 items-center justify-center rounded-full bg-zinc-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
             >
               {t("pages.school.cta")}

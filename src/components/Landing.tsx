@@ -3,11 +3,11 @@
 import { useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useI18n } from "@/src/i18n/I18nProvider";
-import { cn } from "@/src/ui/cn";
+import { useI18n } from "@/i18n/I18nProvider";
+import { cn } from "@/ui/cn";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
-import { projects as projectsData } from "@/src/data/projects";
+import { projects as projectsData } from "@/data/projects";
 
 // Home page landing (SPA-like): sections are available via anchors (#school, #projects, ...).
 // Most copy is driven by `src/i18n/en.json` and `src/i18n/ru.json`.
@@ -168,7 +168,7 @@ export function Landing() {
             </a>
             <div className="mt-3">
               <Link
-                href="/school"
+                href="/school/"
                 className="text-sm font-semibold text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
               >
                 {t("common.learnMore")}
@@ -218,7 +218,7 @@ export function Landing() {
         </div>
         <div className="mt-8">
           <Link
-            href="/projects"
+            href="/projects/"
             className="inline-flex h-11 items-center justify-center rounded-full bg-zinc-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
           >
             {t("pages.projects.allProjects")}
@@ -266,7 +266,7 @@ export function Landing() {
         </div>
         <div className="mt-8">
           <Link
-            href="/about"
+            href="/about/"
             className="text-sm font-semibold text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
           >
             {t("common.learnMore")}
@@ -309,12 +309,12 @@ export function Landing() {
               {t("consulting.cta")}
             </a>
             <div className="mt-3">
-              <Link
-                href="/consulting"
-                className="text-sm font-semibold text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
-              >
-                {t("common.learnMore")}
-              </Link>
+            <Link
+              href="/consulting/"
+              className="text-sm font-semibold text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
+            >
+              {t("common.learnMore")}
+            </Link>
             </div>
           </div>
         </div>

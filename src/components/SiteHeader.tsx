@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useId, useMemo, useState } from "react";
-import { useI18n } from "@/src/i18n/I18nProvider";
-import { cn } from "@/src/ui/cn";
+import { useI18n } from "@/i18n/I18nProvider";
+import { cn } from "@/ui/cn";
 import { Container } from "@/components/Container";
 
 type NavItem = { id: string; labelKey: string; href: string };

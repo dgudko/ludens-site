@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Ludens",
-    "description": "Dimitry Gudko — games, production, mentoring, and consulting. A warm, clear portal for people stepping into the new."
+    "description": "Dimitry Gudko — games, production, mentoring, and consulting. A clean portal: projects, school, and 1:1 sessions."
   },
   "brand": {
     "name": "Ludens"
@@ -29,7 +29,7 @@
   },
   "hero": {
     "title": "Drop the noise. Hold your line.",
-    "subtitle": "I’m Dimitry Gudko. I help people stepping into the new: get grounded, regain the spark, and move with clarity — together.",
+    "subtitle": "I'm Dimitry Gudko. I help people stepping into the new: get grounded, regain the spark, and move with clarity — together.",
     "cta": {
       "school": "School",
       "projects": "Projects",
@@ -42,7 +42,7 @@
     "items": [
       {
         "title": "Projects",
-        "description": "Open-source and live things you can join and contribute to.",
+        "description": "Live things you can join. Some are open source, all are made honestly.",
         "href": "#projects"
       },
       {
@@ -52,42 +52,37 @@
       },
       {
         "title": "Consulting",
-        "description": "If you’re drifting — we’ll get your line back and build a plan.",
+        "description": "If you're drifting — we'll get your line back and build a simple plan.",
         "href": "#consulting"
       },
       {
         "title": "Contacts",
-        "description": "Message me — I’ll suggest the next step.",
+        "description": "Message me — I'll suggest the next step.",
         "href": "#contacts"
       }
     ]
   },
   "school": {
     "title": "School",
-    "lead": "A school about self-support and moving toward your project: quieter inside, clearer in your head, concrete in your steps.",
+    "lead": "A school about self-support and a path to your project: quieter inside, clearer in your head, concrete in your steps.",
     "whatYouLearnTitle": "What you get",
     "whatYouLearn": [
       "You find what drives you consistently (not a flash)",
       "You shape a project vision and first decisions",
       "You start a prototype (or understand what blocks it)",
-      "It becomes easier to hold the line when it’s noisy and scary"
+      "It becomes easier to hold the line when it's noisy and scary"
     ],
     "formatsTitle": "Formats",
     "formats": ["1:1 mentoring", "Reviews", "Mini-course / practice", "On-going support"],
     "forWhomTitle": "Who it's for",
-    "forWhom": [
-      "People stepping into the new and getting lost",
-      "Indies and early teams",
-      "“Not creative” people who want to open the channel"
-    ],
+    "forWhom": ["People stepping into the new and getting lost", "Indies and early teams", "\"Not creative\" people who want to open the channel"],
     "cta": "Contact"
   },
   "projects": {
     "title": "Projects",
-    "lead": "Live projects and ideas. If you want to be “in the work” — we’ll find your place.",
+    "lead": "Live projects and ideas. If you want to be in the work — we'll find your place.",
     "statuses": {
       "active": "live",
-      "inProgress": "in progress",
       "in_progress": "in progress",
       "concept": "concept"
     }
@@ -99,11 +94,12 @@
       {
         "name": "Dimitry Gudko",
         "role": "Production • Games • 1:1 mentoring",
-        "bio": "I help you get grounded, separate noise from what’s real, and plan a path to the goal in a chaotic context — simply and humanly.",
+        "bio": "I help you get grounded, separate noise from what's real, and plan a path to the goal in a chaotic context — simply and humanly.",
         "photoSrc": "",
         "photoAlt": "Portrait of Dimitry Gudko",
         "links": [
-          { "label": "Telegram", "url": "https://t.me/ya_sammm" },
+          { "label": "Telegram (DM)", "url": "https://t.me/realmitros" },
+          { "label": "Telegram (channel)", "url": "https://t.me/ya_sammm" },
           { "label": "GitHub", "url": "https://github.com/dgudko" }
         ]
       }
@@ -117,7 +113,7 @@
       "I want to do X, never did it — where do I start?",
       "My creative work feels bland — how do I bring it to life?",
       "A team started strong and got stuck — how do we regain momentum?",
-      "I’m “the leader” but I’m running after everyone — how do I fix it?",
+      "I'm \"the leader\" but I'm running after everyone — how do I fix it?",
       "I feel unfree even alone — how do I become freer?"
     ],
     "forWhomTitle": "Who it's for",
@@ -126,7 +122,7 @@
   },
   "contacts": {
     "title": "Contacts",
-    "lead": "One small step to “you belong here”. Message me as you are — I’ll reply.",
+    "lead": "One small step to \"you belong here\". Message me as you are — I'll reply.",
     "emailLabel": "Email",
     "emailValue": "ludens.school@gmail.com",
     "telegramLabel": "Telegram (channel)",
@@ -161,7 +157,7 @@
       "detailsTitle": "Details",
       "detailsLead": "Short text and context. You can expand with screenshots, links, and progress logs.",
       "noImageTitle": "No image yet",
-      "noImageLead": "Add a cover to public/images and wire it in code."
+      "noImageLead": "Add an image to public/images and wire it in."
     },
     "school": {
       "title": "School",
@@ -178,27 +174,23 @@
       "programLead": "A skeleton adapted to your level and context.",
       "modulesTitle": "Modules",
       "modules": [
-        "Self-support: what’s yours vs what’s noise",
+        "Self-support: what's yours vs what's noise",
         "Idea and project vision",
         "First steps: prototype and quality criteria",
         "Teamwork without friction",
-        "A path plan: from “now” to “it happened”"
+        "A path plan: from \"now\" to \"it happened\""
       ],
       "outcomesTitle": "Outcomes",
-      "outcomes": [
-        "Quieter and clearer inside",
-        "Project vision and first decisions",
-        "Prototype start and clear next steps"
-      ],
+      "outcomes": ["Quieter and clearer inside", "Project vision and first decisions", "Prototype start and clear next steps"],
       "formatsTitle": "Formats",
-      "formatsLead": "We’ll pick what fits your pace and budget.",
+      "formatsLead": "We'll pick what fits your pace and budget.",
       "formats": ["1:1 mentoring", "Reviews", "Mini-course / practice", "On-going support"],
       "finalTitle": "Next step",
       "finalLead": "Write what you want to do and where you got stuck.",
-      "finalBody": "I’ll reply with a good starting point and the right format.",
+      "finalBody": "I'll reply with a good starting point and the right format.",
       "waitlistTitle": "Waitlist",
-      "waitlistLead": "Leave your email — I’ll message you when the school starts forming.",
-      "waitlistBody": "This is not a social network. Just a list so we don’t lose each other. From time to time — a short, practical email.",
+      "waitlistLead": "Leave your email — I'll message you when the school starts forming.",
+      "waitlistBody": "This is not a social network. Just a list so we don't lose each other. From time to time — a short, practical email.",
       "discordInvite": "https://discord.gg/7qtrx9Jm8f",
       "discordCta": "Join Discord (School)"
     },
@@ -211,29 +203,20 @@
     },
     "consulting": {
       "title": "Consulting",
-      "lead": "1:1 sessions: see reality, regain your line, build a plan. $100–$150 per session, no hard time limit. For students/first-time teams — the first session is free.",
+      "lead": "1:1 sessions: see reality, regain your line, build a plan. $100-$150 per session, no hard time limit. For students/first-time teams — the first session is free.",
       "cta": "Write me",
       "whyTitle": "Why it helps",
-      "whyLead": "When it’s noisy inside, it’s easy to miss. We’ll make it quieter and sharper.",
-      "whyPoints": [
-        "You step into the new and lose the spark.",
-        "You lead, but you carry everything and start falling apart.",
-        "A team got stuck and stopped moving."
-      ],
+      "whyLead": "When it's noisy inside, it's easy to miss. We'll make it quieter and sharper.",
+      "whyPoints": ["You step into the new and lose the spark.", "You lead, but you carry everything and start falling apart.", "A team got stuck and stopped moving."],
       "howTitle": "How it works",
       "howLead": "A simple funnel: context → clarity → plan → motion.",
       "flowTitle": "Flow",
       "flow": ["Short intake message", "Call", "Action plan + next step"],
       "topicsTitle": "Topics",
-      "topics": [
-        "Production and moving to a goal in chaos",
-        "Leadership and boundaries",
-        "Creative clarity and taste",
-        "Teams and collaboration"
-      ],
+      "topics": ["Production and moving to a goal in chaos", "Leadership and boundaries", "Creative clarity and taste", "Teams and collaboration"],
       "finalTitle": "CTA",
       "finalLead": "Ready to move?",
-      "finalBody": "Write 3 lines: 1) what you’re doing 2) where you’re stuck 3) what outcome you want."
+      "finalBody": "Write 3 lines: 1) what you're doing 2) where you're stuck 3) what outcome you want."
     },
     "contacts": {
       "title": "Contacts",

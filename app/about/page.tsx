@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useI18n } from "@/src/i18n/I18nProvider";
+import { useI18n } from "@/i18n/I18nProvider";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 
@@ -101,7 +101,7 @@ export default function AboutPage() {
 
         <div className="mt-8">
           <Link
-            href="/contacts"
+            href="/contacts/"
             className="inline-flex h-11 items-center justify-center rounded-full bg-zinc-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
           >
             {t("pages.about.cta")}
@@ -111,4 +111,3 @@ export default function AboutPage() {
     </div>
   );
 }
-

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { projects, getProjectBySlug } from "@/src/data/projects";
+import { projects, getProjectBySlug } from "@/data/projects";
 import { ProjectPageClient } from "@/components/projects/ProjectPageClient";
 
 export const dynamicParams = false;

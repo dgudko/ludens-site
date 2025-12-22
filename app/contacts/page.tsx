@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useI18n } from "@/src/i18n/I18nProvider";
+import { useI18n } from "@/i18n/I18nProvider";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 
@@ -141,7 +141,7 @@ export default function ContactsPage() {
                 {t("contacts.writeCta")}
               </a>
               <Link
-                href="/projects"
+                href="/projects/"
                 className="inline-flex h-11 w-full items-center justify-center rounded-full border border-black/10 bg-white px-5 text-sm font-semibold text-zinc-900 transition-colors hover:bg-black/5 dark:border-white/15 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-white/10"
               >
                 {t("pages.contacts.seeProjects")}
