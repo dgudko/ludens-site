@@ -94,7 +94,7 @@ export const projects: Project[] = [
       ru: "Широкий профиль: тупики, лидерство, творческая ясность, команда, план к цели в хаосе.\n\n$100–$150 за встречу. По времени не ограничена: работаем, пока не распутаем.\n\nДля молодых старт-ап команд (первый опыт) — сейчас могу на энтузиазме.\n\nНужно от тебя: подтверждение прайса, политика бесплатных разборов и ссылка для записи (или просто «пиши в телегу/почту»).",
       en: "$100–$150 per session. No hard time limit: we work until it’s clear.\n\nI can also help early student/first-time teams with a lighter format.\n\nNeeded from you: confirm pricing, free review policy, and a booking link (or “message me on Telegram/email”).",
     },
-    links: [{ label: "Write", url: "/contacts" }],
+    links: [{ label: "Write", url: "/contacts/" }],
     status: "active",
   },
 ];

@@ -207,7 +207,7 @@ export function Landing() {
               </p>
               <div className="mt-5">
                 <Link
-                  href={`/projects/${project.slug}`}
+                  href={`/projects/${project.slug}/`}
                   className="inline-flex h-10 items-center justify-center rounded-full border border-black/10 bg-white px-4 text-sm font-semibold text-zinc-900 transition-colors hover:bg-black/5 dark:border-white/15 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-white/10"
                 >
                   {t("pages.projects.openProject")}

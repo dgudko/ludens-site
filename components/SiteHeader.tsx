@@ -24,11 +24,11 @@ export function SiteHeader() {
   const navItems = useMemo<NavItem[]>(
     () => [
       { id: "home", labelKey: "nav.home", href: "/" },
-      { id: "school", labelKey: "nav.school", href: "/school" },
-      { id: "projects", labelKey: "nav.projects", href: "/projects" },
-      { id: "about", labelKey: "nav.about", href: "/about" },
-      { id: "consulting", labelKey: "nav.consulting", href: "/consulting" },
-      { id: "contacts", labelKey: "nav.contacts", href: "/contacts" },
+      { id: "school", labelKey: "nav.school", href: "/school/" },
+      { id: "projects", labelKey: "nav.projects", href: "/projects/" },
+      { id: "about", labelKey: "nav.about", href: "/about/" },
+      { id: "consulting", labelKey: "nav.consulting", href: "/consulting/" },
+      { id: "contacts", labelKey: "nav.contacts", href: "/contacts/" },
     ],
     [],
   );

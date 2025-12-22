@@ -48,7 +48,7 @@ export function ProjectsPageClient({ projects }: { projects: Project[] }) {
 
               <div className="mt-5 flex flex-wrap items-center gap-2">
                 <Link
-                  href={`/projects/${project.slug}`}
+                  href={`/projects/${project.slug}/`}
                   className="inline-flex h-10 items-center justify-center rounded-full bg-zinc-900 px-4 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
                 >
                   {t("pages.projects.openProject")}

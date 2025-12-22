@@ -60,7 +60,7 @@ export function ProjectPageClient({ project }: { project: Project }) {
       <div className="border-b border-black/5 bg-gradient-to-b from-zinc-50 to-white py-10 dark:border-white/10 dark:from-zinc-950 dark:to-zinc-950">
         <Container>
           <Link
-            href="/projects"
+            href="/projects/"
             className="text-sm font-semibold text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
           >
             {t("pages.projects.back")}
@@ -124,7 +124,7 @@ export function ProjectPageClient({ project }: { project: Project }) {
                 {t("pages.consulting.finalBody")}
               </p>
               <Link
-                href="/contacts"
+                href="/contacts/"
                 className="mt-5 inline-flex h-11 w-full items-center justify-center rounded-full bg-zinc-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
               >
                 {t("pages.consulting.cta")}
