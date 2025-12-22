@@ -103,8 +103,8 @@
         "photoSrc": "",
         "photoAlt": "Portrait of Dimitry Gudko",
         "links": [
-          { "label": "Telegram", "url": "https://t.me/yourhandle" },
-          { "label": "GitHub", "url": "https://github.com/yourhandle" }
+          { "label": "Telegram", "url": "https://t.me/ya_sammm" },
+          { "label": "GitHub", "url": "https://github.com/dgudko" }
         ]
       }
     ]
@@ -128,11 +128,17 @@
     "title": "Contacts",
     "lead": "One small step to “you belong here”. Message me as you are — I’ll reply.",
     "emailLabel": "Email",
-    "emailValue": "hello@ludens.school",
-    "telegramLabel": "Telegram",
-    "telegramValue": "@yourhandle",
-    "discordLabel": "Discord",
-    "discordValue": "https://discord.gg/your-invite",
+    "emailValue": "ludens.school@gmail.com",
+    "telegramLabel": "Telegram (channel)",
+    "telegramValue": "@ya_sammm",
+    "telegram2Label": "Telegram (DM)",
+    "telegram2Value": "@realmitros",
+    "discordLabel": "Discord (L2)",
+    "discordValue": "https://discord.gg/kCNcu9zCnM",
+    "discord2Label": "Discord (Borsh)",
+    "discord2Value": "https://discord.gg/QaZkzxQfHn",
+    "discord3Label": "Discord (School)",
+    "discord3Value": "https://discord.gg/7qtrx9Jm8f",
     "writeCta": "Write a message"
   },
   "footer": {
@@ -189,7 +195,12 @@
       "formats": ["1:1 mentoring", "Reviews", "Mini-course / practice", "On-going support"],
       "finalTitle": "Next step",
       "finalLead": "Write what you want to do and where you got stuck.",
-      "finalBody": "I’ll reply with a good starting point and the right format."
+      "finalBody": "I’ll reply with a good starting point and the right format.",
+      "waitlistTitle": "Waitlist",
+      "waitlistLead": "Leave your email — I’ll message you when the school starts forming.",
+      "waitlistBody": "This is not a social network. Just a list so we don’t lose each other. From time to time — a short, practical email.",
+      "discordInvite": "https://discord.gg/7qtrx9Jm8f",
+      "discordCta": "Join Discord (School)"
     },
     "about": {
       "title": "About",
@@ -200,7 +211,7 @@
     },
     "consulting": {
       "title": "Consulting",
-      "lead": "1:1 sessions: see reality, regain your line, build a plan. $100–$150 per session, no hard time limit.",
+      "lead": "1:1 sessions: see reality, regain your line, build a plan. $100–$150 per session, no hard time limit. For students/first-time teams — the first session is free.",
       "cta": "Write me",
       "whyTitle": "Why it helps",
       "whyLead": "When it’s noisy inside, it’s easy to miss. We’ll make it quieter and sharper.",

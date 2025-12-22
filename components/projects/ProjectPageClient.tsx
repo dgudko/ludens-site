@@ -12,6 +12,48 @@ function statusLabelKey(status: ProjectStatus | undefined) {
 
 export function ProjectPageClient({ project }: { project: Project }) {
   const { lang, t } = useI18n();
+  const content = project.content?.[lang] ?? "";
+  const blocks = content
+    .split(/\n{2,}/)
+    .map((b) => b.trim())
+    .filter(Boolean);
+
+  function renderBlock(block: string) {
+    if (block.startsWith("## ")) {
+      return (
+        <h3 className="mt-0 text-base font-semibold text-zinc-950 dark:text-zinc-50">
+          {block.replace(/^##\s+/, "")}
+        </h3>
+      );
+    }
+
+    const lines = block
+      .split("\n")
+      .map((l) => l.trim())
+      .filter(Boolean);
+
+    const isList =
+      lines.length > 1 && lines.every((l) => l.startsWith("- ") || l.startsWith("• "));
+
+    if (isList) {
+      return (
+        <ul className="space-y-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+          {lines.map((l) => (
+            <li key={l} className="flex gap-2">
+              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
+              <span>{l.replace(/^(-\s+|•\s+)/, "")}</span>
+            </li>
+          ))}
+        </ul>
+      );
+    }
+
+    return (
+      <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-300 whitespace-pre-line">
+        {block}
+      </p>
+    );
+  }
 
   return (
     <div className="bg-white dark:bg-zinc-950">
@@ -36,6 +78,22 @@ export function ProjectPageClient({ project }: { project: Project }) {
           <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300 sm:text-lg">
             {project.summary[lang]}
           </p>
+
+          {(project.links ?? []).length ? (
+            <div className="mt-6 flex flex-wrap gap-2">
+              {(project.links ?? []).map((link) => (
+                <a
+                  key={link.url}
+                  href={link.url}
+                  target={link.url.startsWith("/") ? undefined : "_blank"}
+                  rel={link.url.startsWith("/") ? undefined : "noreferrer"}
+                  className="inline-flex h-10 items-center justify-center rounded-full border border-black/10 bg-white px-4 text-sm font-semibold text-zinc-900 transition-colors hover:bg-black/5 dark:border-white/15 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-white/10"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          ) : null}
         </Container>
       </div>
 
@@ -43,9 +101,17 @@ export function ProjectPageClient({ project }: { project: Project }) {
         <div className="grid gap-6 lg:grid-cols-12">
           <div className="lg:col-span-8">
             <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/15 dark:bg-zinc-950">
-              <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-                {project.content?.[lang] ?? t("pages.projects.detailsLead")}
-              </p>
+              <div className="space-y-4">
+                {blocks.length ? (
+                  blocks.map((b, index) => (
+                    <div key={`${index}:${b.slice(0, 24)}`}>{renderBlock(b)}</div>
+                  ))
+                ) : (
+                  <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                    {t("pages.projects.detailsLead")}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
 
@@ -70,4 +136,3 @@ export function ProjectPageClient({ project }: { project: Project }) {
     </div>
   );
 }
-

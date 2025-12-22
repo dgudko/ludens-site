@@ -53,6 +53,18 @@ export function ProjectsPageClient({ projects }: { projects: Project[] }) {
                 >
                   {t("pages.projects.openProject")}
                 </Link>
+
+                {(project.links ?? []).slice(0, 2).map((link) => (
+                  <a
+                    key={link.url}
+                    href={link.url}
+                    target={link.url.startsWith("/") ? undefined : "_blank"}
+                    rel={link.url.startsWith("/") ? undefined : "noreferrer"}
+                    className="inline-flex h-10 items-center justify-center rounded-full border border-black/10 bg-white px-4 text-sm font-semibold text-zinc-900 transition-colors hover:bg-black/5 dark:border-white/15 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-white/10"
+                  >
+                    {link.label}
+                  </a>
+                ))}
               </div>
             </div>
           ))}
@@ -61,4 +73,3 @@ export function ProjectsPageClient({ projects }: { projects: Project[] }) {
     </div>
   );
 }
-

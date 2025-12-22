@@ -39,6 +39,10 @@ export function Landing() {
   const year = useMemo(() => new Date().getFullYear(), []);
   const featuredProjects = projectsData.slice(0, 3);
 
+  function telegramHref(value: string) {
+    return value.startsWith("@") ? `https://t.me/${value.slice(1)}` : value;
+  }
+
   return (
     <div className="bg-white dark:bg-zinc-950">
       <section
@@ -335,16 +339,12 @@ export function Landing() {
               </div>
               <div>
                 <dt className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
-                  {t("contacts.telegramLabel")}
+              {t("contacts.telegramLabel")}
                 </dt>
                 <dd className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
                   <a
                     className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
-                    href={
-                      t("contacts.telegramValue").startsWith("@")
-                        ? `https://t.me/${t("contacts.telegramValue").slice(1)}`
-                        : t("contacts.telegramValue")
-                    }
+                    href={telegramHref(t("contacts.telegramValue"))}
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -352,6 +352,23 @@ export function Landing() {
                   </a>
                 </dd>
               </div>
+              {t("contacts.telegram2Value") !== "contacts.telegram2Value" ? (
+                <div>
+                  <dt className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
+                    {t("contacts.telegram2Label")}
+                  </dt>
+                  <dd className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
+                    <a
+                      className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
+                      href={telegramHref(t("contacts.telegram2Value"))}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {t("contacts.telegram2Value")}
+                    </a>
+                  </dd>
+                </div>
+              ) : null}
               <div>
                 <dt className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
                   {t("contacts.discordLabel")}
@@ -367,6 +384,40 @@ export function Landing() {
                   </a>
                 </dd>
               </div>
+              {t("contacts.discord2Value") !== "contacts.discord2Value" ? (
+                <div>
+                  <dt className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
+                    {t("contacts.discord2Label")}
+                  </dt>
+                  <dd className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
+                    <a
+                      className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
+                      href={t("contacts.discord2Value")}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {t("contacts.discord2Value")}
+                    </a>
+                  </dd>
+                </div>
+              ) : null}
+              {t("contacts.discord3Value") !== "contacts.discord3Value" ? (
+                <div>
+                  <dt className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
+                    {t("contacts.discord3Label")}
+                  </dt>
+                  <dd className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
+                    <a
+                      className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
+                      href={t("contacts.discord3Value")}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {t("contacts.discord3Value")}
+                    </a>
+                  </dd>
+                </div>
+              ) : null}
             </dl>
           </div>
 

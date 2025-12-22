@@ -103,8 +103,8 @@
         "photoSrc": "",
         "photoAlt": "Портрет Дмитрия Гудко",
         "links": [
-          { "label": "Telegram", "url": "https://t.me/yourhandle" },
-          { "label": "GitHub", "url": "https://github.com/yourhandle" }
+          { "label": "Telegram", "url": "https://t.me/ya_sammm" },
+          { "label": "GitHub", "url": "https://github.com/dgudko" }
         ]
       }
     ]
@@ -128,11 +128,17 @@
     "title": "Контакты",
     "lead": "Один шаг до «своего среди своих». Напиши как есть — я отвечу.",
     "emailLabel": "Email",
-    "emailValue": "hello@ludens.school",
-    "telegramLabel": "Telegram",
-    "telegramValue": "@yourhandle",
-    "discordLabel": "Discord",
-    "discordValue": "https://discord.gg/your-invite",
+    "emailValue": "ludens.school@gmail.com",
+    "telegramLabel": "Telegram (канал)",
+    "telegramValue": "@ya_sammm",
+    "telegram2Label": "Telegram (личка)",
+    "telegram2Value": "@realmitros",
+    "discordLabel": "Discord (L2)",
+    "discordValue": "https://discord.gg/kCNcu9zCnM",
+    "discord2Label": "Discord (Borsh)",
+    "discord2Value": "https://discord.gg/QaZkzxQfHn",
+    "discord3Label": "Discord (School)",
+    "discord3Value": "https://discord.gg/7qtrx9Jm8f",
     "writeCta": "Написать"
   },
   "footer": {
@@ -189,7 +195,12 @@
       "formats": ["Личное менторство", "Разборы", "Мини-курс/практика", "Сопровождение по пути"],
       "finalTitle": "Следующий шаг",
       "finalLead": "Напиши, что хочешь сделать и где застрял.",
-      "finalBody": "Я отвечу: с чего лучше начать и какой формат подойдёт."
+      "finalBody": "Я отвечу: с чего лучше начать и какой формат подойдёт.",
+      "waitlistTitle": "Лист ожидания",
+      "waitlistLead": "Оставь почту — я напишу, когда школа начнёт собираться.",
+      "waitlistBody": "Это не соцсеть. Просто список, чтобы не потеряться. Раз в какое-то время — короткое письмо по делу.",
+      "discordInvite": "https://discord.gg/7qtrx9Jm8f",
+      "discordCta": "Зайти в Discord (School)"
     },
     "about": {
       "title": "О нас",
@@ -200,7 +211,7 @@
     },
     "consulting": {
       "title": "Консультации",
-      "lead": "1:1 сессии: видеть реальность, вернуть линию, собрать план. $100–$150 за встречу, без жёсткого тайм-лимита.",
+      "lead": "1:1 сессии: видеть реальность, вернуть линию, собрать план. $100–$150 за встречу, без жёсткого тайм-лимита. Для студентов/первых команд — первая консультация бесплатно.",
       "cta": "Написать",
       "whyTitle": "Зачем это нужно",
       "whyLead": "Когда внутри шумно — проще ошибиться. Мы сделаем тише и точнее.",

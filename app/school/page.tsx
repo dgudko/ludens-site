@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useI18n } from "@/src/i18n/I18nProvider";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
+import { SubstackEmbed } from "@/components/SubstackEmbed";
+import { SUBSTACK_EMBED_URL } from "@/src/config/substack";
 
 export default function SchoolPage() {
   const { t, ta } = useI18n();
@@ -101,7 +103,34 @@ export default function SchoolPage() {
           </div>
         </div>
       </Section>
+
+      {SUBSTACK_EMBED_URL ? (
+        <Section id="school-waitlist" title={t("pages.school.waitlistTitle")} lead={t("pages.school.waitlistLead")}>
+          <div className="grid gap-6 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/15 dark:bg-zinc-950">
+                <div className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                  {t("pages.school.waitlistBody")}
+                </div>
+                <div className="mt-4">
+                  <a
+                    className="text-sm font-semibold text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
+                    href={t("pages.school.discordInvite")}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {t("pages.school.discordCta")}
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5">
+              <SubstackEmbed src={SUBSTACK_EMBED_URL} title="Ludens School waitlist" />
+            </div>
+          </div>
+        </Section>
+      ) : null}
     </div>
   );
 }
-
