@@ -1,0 +1,1073 @@
+﻿*** Begin Patch
+*** Delete File: app/layout.tsx
+*** Add File: app/layout.tsx
++import type { Metadata } from "next";
++import { Geist, Geist_Mono } from "next/font/google";
++import "./globals.css";
++import { Providers } from "./providers";
++import { SiteHeader } from "@/components/SiteHeader";
++
++const geistSans = Geist({
++  variable: "--font-geist-sans",
++  subsets: ["latin"],
++});
++
++const geistMono = Geist_Mono({
++  variable: "--font-geist-mono",
++  subsets: ["latin"],
++});
++
++export const metadata: Metadata = {
++  title: "Ludens",
++  description:
++    "Personal showcase: games, school, projects, consulting, and contacts.",
++};
++
++export default function RootLayout({
++  children,
++}: Readonly<{
++  children: React.ReactNode;
++}>) {
++  return (
++    <html lang="ru" className="h-full">
++      <body
++        className={`${geistSans.variable} ${geistMono.variable} min-h-full antialiased`}
++      >
++        <Providers>
++          <SiteHeader />
++          <main id="content" className="pt-16">
++            {children}
++          </main>
++        </Providers>
++      </body>
++    </html>
++  );
++}
+*** Delete File: app/page.tsx
+*** Add File: app/page.tsx
++import { Landing } from "@/components/Landing";
++
++export default function Home() {
++  return <Landing />;
++}
+*** Delete File: app/globals.css
+*** Add File: app/globals.css
++@import "tailwindcss";
++
++:root {
++  --background: #ffffff;
++  --foreground: #171717;
++}
++
++@theme inline {
++  --color-background: var(--background);
++  --color-foreground: var(--foreground);
++  --font-sans: var(--font-geist-sans);
++  --font-mono: var(--font-geist-mono);
++}
++
++@media (prefers-color-scheme: dark) {
++  :root {
++    --background: #0a0a0a;
++    --foreground: #ededed;
++  }
++}
++
++body {
++  background: var(--background);
++  color: var(--foreground);
++  font-family: var(--font-sans), system-ui, -apple-system, Segoe UI, Roboto,
++    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
++}
++
++html {
++  scroll-behavior: smooth;
++}
+*** Delete File: README.md
+*** Add File: README.md
++## Ludens site (MVP)
++
++### Dev
++
++- Start dev server: `npm run dev`
++- Build: `npm run build`
++- Lint: `npm run lint`
++
++### Content & i18n
++
++See `CONTENT.md`.
++
++This is a Next.js (App Router) + Tailwind v4 project.
+*** Add File: CONTENT.md
++# Ludens site content
++
++## Where texts live (i18n)
++
++- `src/i18n/ru.json` — Russian texts (default)
++- `src/i18n/en.json` — English texts
++
++All UI copy on the landing is taken from these dictionaries.
++
++## Where layout lives (sections / anchors)
++
++- `components/Landing.tsx` — landing structure (Hero + sections)
++- `components/SiteHeader.tsx` — top navigation tabs (anchors)
++
++To add a new section:
++
++1. Add a new tab item in `components/SiteHeader.tsx`
++2. Add a new `<Section id="...">` in `components/Landing.tsx`
++3. Add the corresponding text keys in both `src/i18n/ru.json` and `src/i18n/en.json`
++
++## Language behavior
++
++Language is switched without a page reload and persisted in `localStorage` under `ludens.lang`.
+*** Add File: app/providers.tsx
++"use client";
++
++import { I18nProvider } from "@/src/i18n/I18nProvider";
++
++export function Providers({ children }: { children: React.ReactNode }) {
++  return <I18nProvider>{children}</I18nProvider>;
++}
+*** Add File: components/Container.tsx
++import { cn } from "@/src/ui/cn";
++
++export function Container({
++  children,
++  className,
++}: {
++  children: React.ReactNode;
++  className?: string;
++}) {
++  return (
++    <div className={cn("mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8", className)}>
++      {children}
++    </div>
++  );
++}
+*** Add File: components/Landing.tsx
++"use client";
++
++import { useMemo } from "react";
++import { useI18n } from "@/src/i18n/I18nProvider";
++import { cn } from "@/src/ui/cn";
++import { Container } from "@/components/Container";
++import { Section } from "@/components/Section";
++
++type OverviewItem = { title: string; description: string; href: string };
++type ProjectStatus = "active" | "inProgress" | "concept";
++type ProjectItem = { title: string; description: string; status: ProjectStatus };
++type Person = { name: string; role: string; bio: string };
++
++function initials(name: string): string {
++  const parts = name
++    .split(" ")
++    .map((p) => p.trim())
++    .filter(Boolean);
++  const letters = parts.slice(0, 2).map((p) => p[0]?.toUpperCase());
++  return letters.join("") || "?";
++}
++
++export function Landing() {
++  const { t, ta, tv } = useI18n();
++
++  const overviewItems = tv<OverviewItem[]>("overview.items") ?? [];
++  const projects = tv<ProjectItem[]>("projects.items") ?? [];
++  const people = tv<Person[]>("about.people") ?? [];
++
++  const year = useMemo(() => new Date().getFullYear(), []);
++
++  return (
++    <div className="bg-white dark:bg-zinc-950">
++      <section
++        id="home"
++        className="scroll-mt-24 border-b border-black/5 bg-gradient-to-b from-zinc-50 to-white py-16 sm:py-20 dark:border-white/10 dark:from-zinc-950 dark:to-zinc-950"
++      >
++        <Container>
++          <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
++            <div className="lg:col-span-7">
++              <h1 className="text-4xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-5xl">
++                {t("hero.title")}
++              </h1>
++              <p className="mt-5 max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300 sm:text-lg">
++                {t("hero.subtitle")}
++              </p>
++              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
++                <a
++                  href="#school"
++                  className="inline-flex h-11 items-center justify-center rounded-full bg-zinc-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
++                >
++                  {t("hero.cta.school")}
++                </a>
++                <a
++                  href="#projects"
++                  className="inline-flex h-11 items-center justify-center rounded-full border border-black/10 bg-white px-5 text-sm font-semibold text-zinc-900 transition-colors hover:bg-black/5 dark:border-white/15 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-white/10"
++                >
++                  {t("hero.cta.projects")}
++                </a>
++                <a
++                  href="#consulting"
++                  className="inline-flex h-11 items-center justify-center rounded-full border border-black/10 bg-white px-5 text-sm font-semibold text-zinc-900 transition-colors hover:bg-black/5 dark:border-white/15 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-white/10"
++                >
++                  {t("hero.cta.consulting")}
++                </a>
++                <a
++                  href="#about"
++                  className="inline-flex h-11 items-center justify-center rounded-full border border-black/10 bg-white px-5 text-sm font-semibold text-zinc-900 transition-colors hover:bg-black/5 dark:border-white/15 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-white/10"
++                >
++                  {t("hero.cta.about")}
++                </a>
++              </div>
++            </div>
++
++            <div className="lg:col-span-5">
++              <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/15 dark:bg-zinc-950">
++                <div className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
++                  {t("overview.title")}
++                </div>
++                <div className="mt-4 grid gap-3">
++                  {overviewItems.map((item) => (
++                    <a
++                      key={item.href}
++                      href={item.href}
++                      className="rounded-2xl border border-black/10 p-4 transition-colors hover:bg-black/5 dark:border-white/15 dark:hover:bg-white/10"
++                    >
++                      <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
++                        {item.title}
++                      </div>
++                      <div className="mt-1 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
++                        {item.description}
++                      </div>
++                    </a>
++                  ))}
++                </div>
++              </div>
++            </div>
++          </div>
++        </Container>
++      </section>
++
++      <Section
++        id="school"
++        title={t("school.title")}
++        lead={t("school.lead")}
++        className="bg-white dark:bg-zinc-950"
++      >
++        <div className="grid gap-8 lg:grid-cols-3">
++          <div className="rounded-3xl border border-black/10 bg-white p-6 dark:border-white/15 dark:bg-zinc-950">
++            <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
++              {t("school.whatYouLearnTitle")}
++            </div>
++            <ul className="mt-4 space-y-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
++              {ta("school.whatYouLearn").map((item) => (
++                <li key={item} className="flex gap-2">
++                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
++                  <span>{item}</span>
++                </li>
++              ))}
++            </ul>
++          </div>
++
++          <div className="rounded-3xl border border-black/10 bg-white p-6 dark:border-white/15 dark:bg-zinc-950">
++            <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
++              {t("school.formatsTitle")}
++            </div>
++            <ul className="mt-4 space-y-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
++              {ta("school.formats").map((item) => (
++                <li key={item} className="flex gap-2">
++                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
++                  <span>{item}</span>
++                </li>
++              ))}
++            </ul>
++          </div>
++
++          <div className="rounded-3xl border border-black/10 bg-white p-6 dark:border-white/15 dark:bg-zinc-950">
++            <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
++              {t("school.forWhomTitle")}
++            </div>
++            <ul className="mt-4 space-y-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
++              {ta("school.forWhom").map((item) => (
++                <li key={item} className="flex gap-2">
++                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
++                  <span>{item}</span>
++                </li>
++              ))}
++            </ul>
++            <a
++              href="#contacts"
++              className="mt-6 inline-flex h-11 w-full items-center justify-center rounded-full bg-zinc-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
++            >
++              {t("school.cta")}
++            </a>
++          </div>
++        </div>
++      </Section>
++
++      <Section id="projects" title={t("projects.title")} lead={t("projects.lead")}>
++        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
++          {projects.map((project) => (
++            <details
++              key={project.title}
++              className="group rounded-3xl border border-black/10 bg-white p-6 transition-colors hover:bg-black/5 dark:border-white/15 dark:bg-zinc-950 dark:hover:bg-white/10"
++            >
++              <summary className="cursor-pointer list-none">
++                <div className="flex items-start justify-between gap-3">
++                  <div>
++                    <div className="text-base font-semibold text-zinc-950 dark:text-zinc-50">
++                      {project.title}
++                    </div>
++                    <div className="mt-2 inline-flex rounded-full border border-black/10 px-2 py-0.5 text-xs font-semibold text-zinc-700 dark:border-white/15 dark:text-zinc-300">
++                      {t(`projects.statuses.${project.status}`)}
++                    </div>
++                  </div>
++                  <div className="text-sm text-zinc-500 transition-transform group-open:rotate-180 dark:text-zinc-400">
++                    ▾
++                  </div>
++                </div>
++              </summary>
++              <p className="mt-4 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
++                {project.description}
++              </p>
++            </details>
++          ))}
++        </div>
++      </Section>
++
++      <Section id="about" title={t("about.title")} lead={t("about.lead")}>
++        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
++          {people.map((person) => (
++            <div
++              key={person.name}
++              className="rounded-3xl border border-black/10 bg-white p-6 dark:border-white/15 dark:bg-zinc-950"
++            >
++              <div className="flex items-start gap-4">
++                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-zinc-900 text-sm font-semibold text-white dark:bg-white dark:text-zinc-950">
++                  {initials(person.name)}
++                </div>
++                <div>
++                  <div className="text-base font-semibold text-zinc-950 dark:text-zinc-50">
++                    {person.name}
++                  </div>
++                  <div className="mt-1 text-sm font-medium text-zinc-600 dark:text-zinc-300">
++                    {person.role}
++                  </div>
++                </div>
++              </div>
++              <p className="mt-4 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
++                {person.bio}
++              </p>
++            </div>
++          ))}
++        </div>
++      </Section>
++
++      <Section id="consulting" title={t("consulting.title")} lead={t("consulting.lead")}>
++        <div className="grid gap-8 lg:grid-cols-2">
++          <div className="rounded-3xl border border-black/10 bg-white p-6 dark:border-white/15 dark:bg-zinc-950">
++            <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
++              {t("consulting.whatTitle")}
++            </div>
++            <ul className="mt-4 space-y-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
++              {ta("consulting.what").map((item) => (
++                <li key={item} className="flex gap-2">
++                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
++                  <span>{item}</span>
++                </li>
++              ))}
++            </ul>
++          </div>
++
++          <div className="rounded-3xl border border-black/10 bg-white p-6 dark:border-white/15 dark:bg-zinc-950">
++            <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
++              {t("consulting.forWhomTitle")}
++            </div>
++            <ul className="mt-4 space-y-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
++              {ta("consulting.forWhom").map((item) => (
++                <li key={item} className="flex gap-2">
++                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
++                  <span>{item}</span>
++                </li>
++              ))}
++            </ul>
++            <a
++              href="#contacts"
++              className="mt-6 inline-flex h-11 w-full items-center justify-center rounded-full bg-zinc-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
++            >
++              {t("consulting.cta")}
++            </a>
++          </div>
++        </div>
++      </Section>
++
++      <Section id="contacts" title={t("contacts.title")} lead={t("contacts.lead")}>
++        <div className="grid gap-4 lg:grid-cols-12">
++          <div className="rounded-3xl border border-black/10 bg-white p-6 dark:border-white/15 dark:bg-zinc-950 lg:col-span-7">
++            <dl className="grid gap-4 sm:grid-cols-2">
++              <div>
++                <dt className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
++                  {t("contacts.emailLabel")}
++                </dt>
++                <dd className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
++                  <a
++                    className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
++                    href={`mailto:${t("contacts.emailValue")}`}
++                  >
++                    {t("contacts.emailValue")}
++                  </a>
++                </dd>
++              </div>
++              <div>
++                <dt className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
++                  {t("contacts.telegramLabel")}
++                </dt>
++                <dd className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
++                  {t("contacts.telegramValue")}
++                </dd>
++              </div>
++              <div>
++                <dt className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
++                  {t("contacts.discordLabel")}
++                </dt>
++                <dd className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
++                  {t("contacts.discordValue")}
++                </dd>
++              </div>
++            </dl>
++          </div>
++
++          <div className="rounded-3xl border border-black/10 bg-white p-6 dark:border-white/15 dark:bg-zinc-950 lg:col-span-5">
++            <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
++              {t("content.howToTitle")}
++            </div>
++            <p className="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
++              {t("content.howToBody")}
++            </p>
++            <a
++              className={cn(
++                "mt-6 inline-flex h-11 w-full items-center justify-center rounded-full",
++                "bg-zinc-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800",
++                "dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200",
++              )}
++              href={`mailto:${t("contacts.emailValue")}`}
++            >
++              {t("contacts.writeCta")}
++            </a>
++          </div>
++        </div>
++
++        <div className="mt-12 border-t border-black/5 pt-6 text-sm text-zinc-500 dark:border-white/10 dark:text-zinc-400">
++          {t("footer.copyright").replace("{year}", String(year))}
++        </div>
++      </Section>
++    </div>
++  );
++}
+*** Add File: components/Section.tsx
++import { cn } from "@/src/ui/cn";
++import { Container } from "@/components/Container";
++
++export function Section({
++  id,
++  title,
++  lead,
++  children,
++  className,
++}: {
++  id: string;
++  title: string;
++  lead?: string;
++  children: React.ReactNode;
++  className?: string;
++}) {
++  const titleId = `${id}-title`;
++
++  return (
++    <section
++      id={id}
++      aria-labelledby={titleId}
++      className={cn("scroll-mt-24 py-16 sm:py-20", className)}
++    >
++      <Container>
++        <div className="max-w-3xl">
++          <h2
++            id={titleId}
++            className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-3xl"
++          >
++            {title}
++          </h2>
++          {lead ? (
++            <p className="mt-3 text-base leading-7 text-zinc-600 dark:text-zinc-300 sm:text-lg">
++              {lead}
++            </p>
++          ) : null}
++        </div>
++        <div className="mt-10">{children}</div>
++      </Container>
++    </section>
++  );
++}
+*** Add File: components/SiteHeader.tsx
++"use client";
++
++import { useEffect, useId, useMemo, useState } from "react";
++import { useI18n } from "@/src/i18n/I18nProvider";
++import { cn } from "@/src/ui/cn";
++import { Container } from "@/components/Container";
++
++type NavItem = { id: string; labelKey: string };
++
++export function SiteHeader() {
++  const { lang, setLang, t } = useI18n();
++  const menuId = useId();
++  const [isMenuOpen, setIsMenuOpen] = useState(false);
++  const [activeSection, setActiveSection] = useState<string>("home");
++
++  const navItems = useMemo<NavItem[]>(
++    () => [
++      { id: "home", labelKey: "nav.home" },
++      { id: "school", labelKey: "nav.school" },
++      { id: "projects", labelKey: "nav.projects" },
++      { id: "about", labelKey: "nav.about" },
++      { id: "consulting", labelKey: "nav.consulting" },
++      { id: "contacts", labelKey: "nav.contacts" },
++    ],
++    [],
++  );
++
++  useEffect(() => {
++    const elements = navItems
++      .map((item) => document.getElementById(item.id))
++      .filter((el): el is HTMLElement => Boolean(el));
++
++    if (elements.length === 0) return;
++
++    const observer = new IntersectionObserver(
++      (entries) => {
++        const visible = entries
++          .filter((e) => e.isIntersecting)
++          .sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0))[0];
++        if (visible?.target?.id) setActiveSection(visible.target.id);
++      },
++      { rootMargin: "-20% 0px -70% 0px", threshold: [0, 0.1, 0.25, 0.5] },
++    );
++
++    for (const el of elements) observer.observe(el);
++    return () => observer.disconnect();
++  }, [navItems]);
++
++  function toggleLanguage() {
++    setLang(lang === "ru" ? "en" : "ru");
++  }
++
++  function onNavClick(id: string) {
++    setIsMenuOpen(false);
++    setActiveSection(id);
++  }
++
++  return (
++    <header className="fixed inset-x-0 top-0 z-50 border-b border-black/5 bg-white/85 backdrop-blur dark:border-white/10 dark:bg-zinc-950/70">
++      <Container className="flex h-16 items-center gap-3">
++        <a
++          href="#home"
++          className="font-semibold tracking-tight text-zinc-950 dark:text-zinc-50"
++          onClick={() => onNavClick("home")}
++        >
++          {t("brand.name")}
++        </a>
++
++        <div className="flex-1" />
++
++        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
++          {navItems.map((item) => (
++            <a
++              key={item.id}
++              href={`#${item.id}`}
++              onClick={() => onNavClick(item.id)}
++              aria-current={activeSection === item.id ? "page" : undefined}
++              className={cn(
++                "rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
++                activeSection === item.id
++                  ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-950"
++                  : "text-zinc-700 hover:bg-black/5 dark:text-zinc-300 dark:hover:bg-white/10",
++              )}
++            >
++              {t(item.labelKey)}
++            </a>
++          ))}
++        </nav>
++
++        <button
++          type="button"
++          onClick={toggleLanguage}
++          className="rounded-full border border-black/10 bg-white px-3 py-1.5 text-sm font-semibold text-zinc-900 transition-colors hover:bg-black/5 dark:border-white/15 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-white/10"
++          aria-label={lang === "ru" ? t("language.ariaSwitchToEn") : t("language.ariaSwitchToRu")}
++        >
++          {lang === "ru" ? t("language.switchToEn") : t("language.switchToRu")}
++        </button>
++
++        <button
++          type="button"
++          className="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-3 py-2 text-sm font-medium text-zinc-900 transition-colors hover:bg-black/5 md:hidden dark:border-white/15 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-white/10"
++          aria-label={isMenuOpen ? t("header.close") : t("header.menu")}
++          aria-controls={menuId}
++          aria-expanded={isMenuOpen}
++          onClick={() => setIsMenuOpen((v) => !v)}
++        >
++          {isMenuOpen ? t("header.close") : t("header.menu")}
++        </button>
++      </Container>
++
++      <div
++        id={menuId}
++        className={cn(
++          "md:hidden",
++          isMenuOpen ? "border-t border-black/5 dark:border-white/10" : "hidden",
++        )}
++      >
++        <Container className="py-3">
++          <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
++            {navItems.map((item) => (
++              <a
++                key={item.id}
++                href={`#${item.id}`}
++                onClick={() => onNavClick(item.id)}
++                className={cn(
++                  "rounded-xl px-3 py-2 text-sm font-medium transition-colors",
++                  activeSection === item.id
++                    ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-950"
++                    : "text-zinc-800 hover:bg-black/5 dark:text-zinc-200 dark:hover:bg-white/10",
++                )}
++              >
++                {t(item.labelKey)}
++              </a>
++            ))}
++          </nav>
++        </Container>
++      </div>
++    </header>
++  );
++}
+*** Add File: src/i18n/en.json
++{
++  "meta": {
++    "title": "Ludens",
++    "description": "A personal showcase: game development, school, projects, consulting, contacts."
++  },
++  "brand": {
++    "name": "Ludens"
++  },
++  "nav": {
++    "home": "Home",
++    "school": "School",
++    "projects": "Projects",
++    "about": "About",
++    "consulting": "Consulting",
++    "contacts": "Contacts"
++  },
++  "language": {
++    "switchToEn": "EN",
++    "switchToRu": "RU",
++    "ariaSwitchToEn": "Switch to English",
++    "ariaSwitchToRu": "Switch to Russian"
++  },
++  "header": {
++    "menu": "Menu",
++    "close": "Close"
++  },
++  "hero": {
++    "title": "Games, learning, and practical work with teams",
++    "subtitle": "I build games, help people and teams ship, and teach how to develop with confidence.",
++    "cta": {
++      "school": "Go to School",
++      "projects": "See Projects",
++      "consulting": "Get Consulting",
++      "about": "About Me"
++    }
++  },
++  "overview": {
++    "title": "Directions",
++    "items": [
++      {
++        "title": "Game Development",
++        "description": "Games, prototypes, systems, pipelines.",
++        "href": "#projects"
++      },
++      {
++        "title": "School",
++        "description": "Mentorship, reviews, practice, courses.",
++        "href": "#school"
++      },
++      {
++        "title": "Projects",
++        "description": "Active, in progress, and concepts.",
++        "href": "#projects"
++      },
++      {
++        "title": "Consulting",
++        "description": "Product, production, tech, and design decisions.",
++        "href": "#consulting"
++      }
++    ]
++  },
++  "school": {
++    "title": "School",
++    "lead": "Learning is built around practice: clear feedback, small iterations, and shipping.",
++    "whatYouLearnTitle": "What you can learn",
++    "whatYouLearn": [
++      "Turn ideas into playable prototypes",
++      "Structure projects and work with scope",
++      "Build core loops, progression, and UX",
++      "Work with tools, assets, and pipelines"
++    ],
++    "formatsTitle": "Formats",
++    "formats": ["Mentorship", "Reviews", "Courses", "Hands-on project work"],
++    "forWhomTitle": "Who it's for",
++    "forWhom": [
++      "Beginners who want a structured path",
++      "Indie developers who want to ship",
++      "Teams that need a clearer process"
++    ],
++    "cta": "Contact"
++  },
++  "projects": {
++    "title": "Projects",
++    "lead": "A selection of what I’m building and exploring right now.",
++    "statuses": {
++      "active": "active",
++      "inProgress": "in progress",
++      "concept": "concept"
++    },
++    "items": [
++      {
++        "title": "Project Alpha",
++        "description": "A playable prototype with a focus on feel and iteration speed.",
++        "status": "inProgress"
++      },
++      {
++        "title": "Project Beta",
++        "description": "A systems-driven experiment: economy, progression, and balance.",
++        "status": "concept"
++      },
++      {
++        "title": "Project Gamma",
++        "description": "A small shipped experience: polish, UX, and pipeline lessons.",
++        "status": "active"
++      }
++    ]
++  },
++  "about": {
++    "title": "About",
++    "lead": "Short and clear: who I am and how I work.",
++    "people": [
++      {
++        "name": "Your Name",
++        "role": "Game Developer / Mentor",
++        "bio": "I help ship games and teach practical development through feedback and iterations."
++      }
++    ]
++  },
++  "consulting": {
++    "title": "Consulting",
++    "lead": "1:1 sessions to unblock decisions and improve outcomes.",
++    "whatTitle": "What we can work on",
++    "what": [
++      "Product direction and feature prioritization",
++      "Production planning and scope control",
++      "Technical and architectural choices",
++      "Game design and economy reviews"
++    ],
++    "forWhomTitle": "Who it's for",
++    "forWhom": ["Indie developers", "Teams", "Companies", "Individual specialists"],
++    "cta": "Contact"
++  },
++  "contacts": {
++    "title": "Contacts",
++    "lead": "Reach out in any convenient way.",
++    "emailLabel": "Email",
++    "emailValue": "hello@example.com",
++    "telegramLabel": "Telegram",
++    "telegramValue": "@yourhandle",
++    "discordLabel": "Discord",
++    "discordValue": "yourname",
++    "writeCta": "Write a message"
++  },
++  "footer": {
++    "copyright": "© {year} Ludens"
++  },
++  "content": {
++    "howToTitle": "How to edit content",
++    "howToBody": "Edit translations in src/i18n/en.json and src/i18n/ru.json. Section layout lives in components/Landing.tsx."
++  }
++}
+*** Add File: src/i18n/ru.json
++{
++  "meta": {
++    "title": "Ludens",
++    "description": "Персональный сайт-витрина: игры, школа, проекты, консультации, контакты."
++  },
++  "brand": {
++    "name": "Ludens"
++  },
++  "nav": {
++    "home": "Главная",
++    "school": "Школа",
++    "projects": "Проекты",
++    "about": "О нас",
++    "consulting": "Консультации",
++    "contacts": "Контакты"
++  },
++  "language": {
++    "switchToEn": "EN",
++    "switchToRu": "RU",
++    "ariaSwitchToEn": "Переключить на английский",
++    "ariaSwitchToRu": "Переключить на русский"
++  },
++  "header": {
++    "menu": "Меню",
++    "close": "Закрыть"
++  },
++  "hero": {
++    "title": "Игры, обучение и практическая работа с командами",
++    "subtitle": "Разрабатываю игры, помогаю людям и командам запускать проекты и обучаю практическому подходу.",
++    "cta": {
++      "school": "В школу",
++      "projects": "Смотреть проекты",
++      "consulting": "Консультации",
++      "about": "Обо мне"
++    }
++  },
++  "overview": {
++    "title": "Направления",
++    "items": [
++      {
++        "title": "Разработка игр",
++        "description": "Игры, прототипы, системы, пайплайны.",
++        "href": "#projects"
++      },
++      {
++        "title": "Школа",
++        "description": "Менторство, разборы, практика, курсы.",
++        "href": "#school"
++      },
++      {
++        "title": "Проекты",
++        "description": "Активные, в разработке и концепты.",
++        "href": "#projects"
++      },
++      {
++        "title": "Консультации",
++        "description": "Продукт, продакшен, технологии и дизайн-решения.",
++        "href": "#consulting"
++      }
++    ]
++  },
++  "school": {
++    "title": "Школа",
++    "lead": "Обучение строится вокруг практики: понятный фидбек, короткие итерации и результат.",
++    "whatYouLearnTitle": "Чему можно научиться",
++    "whatYouLearn": [
++      "Превращать идеи в игровые прототипы",
++      "Структурировать проекты и держать скоп",
++      "Собирать core loop, прогрессию и UX",
++      "Работать с инструментами, ассетами и пайплайном"
++    ],
++    "formatsTitle": "Форматы",
++    "formats": ["Менторство", "Разборы", "Курсы", "Практика на проекте"],
++    "forWhomTitle": "Для кого",
++    "forWhom": [
++      "Новички, которым нужен путь и опора",
++      "Инди-разработчики, которые хотят релиз",
++      "Команды, которым нужен более ясный процесс"
++    ],
++    "cta": "Связаться"
++  },
++  "projects": {
++    "title": "Проекты",
++    "lead": "Выборка того, что я сейчас делаю и исследую.",
++    "statuses": {
++      "active": "активный",
++      "inProgress": "в разработке",
++      "concept": "концепт"
++    },
++    "items": [
++      {
++        "title": "Project Alpha",
++        "description": "Играбельный прототип с фокусом на feel и скорость итераций.",
++        "status": "inProgress"
++      },
++      {
++        "title": "Project Beta",
++        "description": "Системный эксперимент: экономика, прогрессия и баланс.",
++        "status": "concept"
++      },
++      {
++        "title": "Project Gamma",
++        "description": "Небольшой «ship»: полировка, UX и уроки по пайплайну.",
++        "status": "active"
++      }
++    ]
++  },
++  "about": {
++    "title": "О нас",
++    "lead": "Коротко и ясно: кто мы и как работаем.",
++    "people": [
++      {
++        "name": "Ваше имя",
++        "role": "Game Developer / Ментор",
++        "bio": "Помогаю запускать игры и учу практической разработке через фидбек и итерации."
++      }
++    ]
++  },
++  "consulting": {
++    "title": "Консультации",
++    "lead": "1:1 сессии, чтобы снять блоки, принять решения и улучшить результат.",
++    "whatTitle": "С чем можно прийти",
++    "what": [
++      "Направление продукта и приоритизация фич",
++      "Планирование продакшена и контроль скопа",
++      "Технические и архитектурные решения",
++      "Разбор геймдизайна и экономики"
++    ],
++    "forWhomTitle": "Для кого это подходит",
++    "forWhom": ["Инди-разработчики", "Команды", "Компании", "Отдельные специалисты"],
++    "cta": "Связаться"
++  },
++  "contacts": {
++    "title": "Контакты",
++    "lead": "Пишите любым удобным способом.",
++    "emailLabel": "Email",
++    "emailValue": "hello@example.com",
++    "telegramLabel": "Telegram",
++    "telegramValue": "@yourhandle",
++    "discordLabel": "Discord",
++    "discordValue": "yourname",
++    "writeCta": "Написать"
++  },
++  "footer": {
++    "copyright": "© {year} Ludens"
++  },
++  "content": {
++    "howToTitle": "Где менять контент",
++    "howToBody": "Тексты лежат в src/i18n/en.json и src/i18n/ru.json. Разметка секций — в components/Landing.tsx."
++  }
++}
+*** Add File: src/i18n/i18n.ts
++import en from "./en.json";
++import ru from "./ru.json";
++
++export const dictionaries = { en, ru } as const;
++
++export type Language = keyof typeof dictionaries;
++export type Dictionary = (typeof dictionaries)["en"];
++
++export function getDictionary(lang: Language): Dictionary {
++  return dictionaries[lang];
++}
++
++function getValueByPath(dictionary: unknown, path: string): unknown {
++  const parts = path.split(".");
++  let current: unknown = dictionary;
++  for (const part of parts) {
++    if (typeof current !== "object" || current === null) return undefined;
++    current = (current as Record<string, unknown>)[part];
++  }
++  return current;
++}
++
++export function t(dictionary: Dictionary, key: string): string {
++  const value = getValueByPath(dictionary, key);
++  return typeof value === "string" ? value : key;
++}
++
++export function ta(dictionary: Dictionary, key: string): string[] {
++  const value = getValueByPath(dictionary, key);
++  return Array.isArray(value) && value.every((v) => typeof v === "string")
++    ? (value as string[])
++    : [];
++}
++
++export function tv<T>(dictionary: Dictionary, key: string): T | undefined {
++  return getValueByPath(dictionary, key) as T | undefined;
++}
+*** Add File: src/i18n/I18nProvider.tsx
++"use client";
++
++import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
++import type { Dictionary, Language } from "./i18n";
++import { getDictionary, t, ta, tv } from "./i18n";
++
++type I18nContextValue = {
++  lang: Language;
++  setLang: (lang: Language) => void;
++  dict: Dictionary;
++  t: (key: string) => string;
++  ta: (key: string) => string[];
++  tv: <T,>(key: string) => T | undefined;
++};
++
++const I18nContext = createContext<I18nContextValue | null>(null);
++
++const STORAGE_KEY = "ludens.lang";
++const DEFAULT_LANG: Language = "ru";
++
++function normalizeLanguage(value: string | null | undefined): Language | null {
++  if (!value) return null;
++  const lowered = value.toLowerCase().split(/[-_]/)[0] ?? "";
++  if (lowered === "en") return "en";
++  if (lowered === "ru") return "ru";
++  return null;
++}
++
++function inferLanguage(): Language {
++  const browser = normalizeLanguage(
++    typeof navigator === "undefined" ? null : navigator.language,
++  );
++  return browser ?? DEFAULT_LANG;
++}
++
++export function I18nProvider({ children }: { children: React.ReactNode }) {
++  const [lang, setLang] = useState<Language>(DEFAULT_LANG);
++
++  useEffect(() => {
++    const stored = normalizeLanguage(localStorage.getItem(STORAGE_KEY));
++    setLang(stored ?? inferLanguage());
++  }, []);
++
++  useEffect(() => {
++    localStorage.setItem(STORAGE_KEY, lang);
++    document.documentElement.lang = lang;
++  }, [lang]);
++
++  const dict = useMemo(() => getDictionary(lang), [lang]);
++
++  const value = useMemo<I18nContextValue>(
++    () => ({
++      lang,
++      setLang,
++      dict,
++      t: (key) => t(dict, key),
++      ta: (key) => ta(dict, key),
++      tv: (key) => tv(dict, key),
++    }),
++    [dict, lang],
++  );
++
++  return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
++}
++
++export function useI18n() {
++  const value = useContext(I18nContext);
++  if (!value) {
++    throw new Error("useI18n must be used within I18nProvider");
++  }
++  return value;
++}
+*** Add File: src/ui/cn.ts
++export function cn(
++  ...parts: Array<string | undefined | null | false>
++): string {
++  return parts.filter(Boolean).join(" ");
++}
+*** End Patch

@@ -1,0 +1,276 @@
+{
+  "meta": {
+    "title": "Ludens",
+    "description": "A personal showcase: game development, school, projects, consulting, contacts."
+  },
+  "brand": {
+    "name": "Ludens"
+  },
+  "common": {
+    "learnMore": "Learn more"
+  },
+  "nav": {
+    "home": "Home",
+    "school": "School",
+    "projects": "Projects",
+    "about": "About",
+    "consulting": "Consulting",
+    "contacts": "Contacts"
+  },
+  "language": {
+    "switchToEn": "EN",
+    "switchToRu": "RU",
+    "ariaSwitchToEn": "Switch to English",
+    "ariaSwitchToRu": "Switch to Russian"
+  },
+  "header": {
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "hero": {
+    "title": "Games, learning, and practical work with teams",
+    "subtitle": "I build games, help people and teams ship, and teach how to develop with confidence.",
+    "cta": {
+      "school": "Go to School",
+      "projects": "See Projects",
+      "consulting": "Get Consulting",
+      "about": "About Me"
+    }
+  },
+  "overview": {
+    "title": "Directions",
+    "items": [
+      {
+        "title": "Game Development",
+        "description": "Games, prototypes, systems, pipelines.",
+        "href": "/#projects"
+      },
+      {
+        "title": "School",
+        "description": "Mentorship, reviews, practice, courses.",
+        "href": "/#school"
+      },
+      {
+        "title": "Projects",
+        "description": "Active, in progress, and concepts.",
+        "href": "/#projects"
+      },
+      {
+        "title": "Consulting",
+        "description": "Product, production, tech, and design decisions.",
+        "href": "/#consulting"
+      }
+    ]
+  },
+  "school": {
+    "title": "School",
+    "lead": "Learning is built around practice: clear feedback, small iterations, and shipping.",
+    "whatYouLearnTitle": "What you can learn",
+    "whatYouLearn": [
+      "Turn ideas into playable prototypes",
+      "Structure projects and work with scope",
+      "Build core loops, progression, and UX",
+      "Work with tools, assets, and pipelines"
+    ],
+    "formatsTitle": "Formats",
+    "formats": ["Mentorship", "Reviews", "Courses", "Hands-on project work"],
+    "forWhomTitle": "Who it's for",
+    "forWhom": [
+      "Beginners who want a structured path",
+      "Indie developers who want to ship",
+      "Teams that need a clearer process"
+    ],
+    "cta": "Contact"
+  },
+  "projects": {
+    "title": "Projects",
+    "lead": "A selection of what I'm building and exploring right now.",
+    "statuses": {
+      "active": "active",
+      "inProgress": "in progress",
+      "concept": "concept"
+    },
+    "items": [
+      {
+        "slug": "alpha",
+        "title": "Project Alpha",
+        "description": "A playable prototype with a focus on feel and iteration speed.",
+        "status": "inProgress",
+        "imageSrc": "",
+        "imageAlt": "Project Alpha cover",
+        "details": [
+          "A fast iteration loop: prototype → test → adjust.",
+          "Focus on feel, pacing, readability, and player feedback.",
+          "Small scope, high polish, frequent milestones."
+        ],
+        "links": []
+      },
+      {
+        "slug": "beta",
+        "title": "Project Beta",
+        "description": "A systems-driven experiment: economy, progression, and balance.",
+        "status": "concept",
+        "imageSrc": "",
+        "imageAlt": "Project Beta cover",
+        "details": [
+          "Designing a progression model and economy constraints.",
+          "Testing balance via simple simulators and playtests.",
+          "Exploring UX and clarity for complex systems."
+        ],
+        "links": []
+      },
+      {
+        "slug": "gamma",
+        "title": "Project Gamma",
+        "description": "A small shipped experience: polish, UX, and pipeline lessons.",
+        "status": "active",
+        "imageSrc": "",
+        "imageAlt": "Project Gamma cover",
+        "details": [
+          "A compact project shipped end-to-end.",
+          "A focus on finishing: menus, UX, feedback, stability.",
+          "Documented lessons for future pipelines."
+        ],
+        "links": []
+      }
+    ]
+  },
+  "about": {
+    "title": "About",
+    "lead": "Short and clear: who I am and how I work.",
+    "people": [
+      {
+        "name": "Your Name",
+        "role": "Game Developer / Mentor",
+        "bio": "I help ship games and teach practical development through feedback and iterations.",
+        "photoSrc": "",
+        "photoAlt": "Portrait",
+        "links": [
+          { "label": "Telegram", "url": "https://t.me/yourhandle" },
+          { "label": "GitHub", "url": "https://github.com/yourhandle" }
+        ]
+      }
+    ]
+  },
+  "consulting": {
+    "title": "Consulting",
+    "lead": "1:1 sessions to unblock decisions and improve outcomes.",
+    "whatTitle": "What we can work on",
+    "what": [
+      "Product direction and feature prioritization",
+      "Production planning and scope control",
+      "Technical and architectural choices",
+      "Game design and economy reviews"
+    ],
+    "forWhomTitle": "Who it's for",
+    "forWhom": ["Indie developers", "Teams", "Companies", "Individual specialists"],
+    "cta": "Contact"
+  },
+  "contacts": {
+    "title": "Contacts",
+    "lead": "Reach out in any convenient way.",
+    "emailLabel": "Email",
+    "emailValue": "hello@example.com",
+    "telegramLabel": "Telegram",
+    "telegramValue": "@yourhandle",
+    "discordLabel": "Discord",
+    "discordValue": "yourname",
+    "writeCta": "Write a message"
+  },
+  "footer": {
+    "copyright": "© {year} Ludens"
+  },
+  "content": {
+    "howToTitle": "How to edit content",
+    "howToBody": "Edit translations in src/i18n/en.json and src/i18n/ru.json. Section layout lives in components/Landing.tsx."
+  },
+  "pages": {
+    "projects": {
+      "title": "Projects",
+      "lead": "Project cards with short descriptions and separate pages for deeper details.",
+      "gridTitle": "Project list",
+      "gridLead": "Pick a project to see details.",
+      "openProject": "Open project",
+      "allProjects": "All projects",
+      "back": "Back to projects",
+      "notFound": "Project not found",
+      "detailsTitle": "Details",
+      "detailsLead": "Short notes and context you can expand later.",
+      "noImageTitle": "No image yet",
+      "noImageLead": "Add a cover in public/images and set imageSrc in i18n."
+    },
+    "school": {
+      "title": "School",
+      "lead": "A practical course on how to make games: structure, iteration, shipping.",
+      "cta": "Contact",
+      "approachTitle": "Approach",
+      "approachLead": "Simple, repeatable, practice-first.",
+      "approachPoints": [
+        "Small steps and weekly feedback.",
+        "Clear goals and measurable results.",
+        "Learn by shipping, not by theory alone."
+      ],
+      "programTitle": "Program",
+      "programLead": "A structure you can adapt to your level and goals.",
+      "modulesTitle": "Modules",
+      "modules": [
+        "Idea → prototype",
+        "Core loop and UX",
+        "Scope and production plan",
+        "Polish and release checklist"
+      ],
+      "outcomesTitle": "Outcomes",
+      "outcomes": [
+        "A playable prototype or vertical slice",
+        "A repeatable workflow",
+        "Better decision-making under constraints"
+      ],
+      "formatsTitle": "Formats",
+      "formatsLead": "Choose what fits your pace and budget.",
+      "formats": ["Mentorship", "Reviews", "Courses", "Hands-on project work"],
+      "finalTitle": "Next step",
+      "finalLead": "Tell me your goal and your current level.",
+      "finalBody": "I’ll suggest the best format and a first iteration plan."
+    },
+    "about": {
+      "title": "About",
+      "lead": "People behind the work.",
+      "teamTitle": "Team",
+      "teamLead": "Short summaries with links to profiles.",
+      "cta": "Contact"
+    },
+    "consulting": {
+      "title": "Consulting",
+      "lead": "1:1 sessions to unblock decisions, reduce risks, and improve outcomes.",
+      "cta": "Contact",
+      "whyTitle": "Why it helps",
+      "whyLead": "Typical situations where consulting saves time.",
+      "whyPoints": [
+        "You’re stuck on product direction or priorities.",
+        "You need a production plan that fits reality.",
+        "You want an external review for design/tech decisions."
+      ],
+      "howTitle": "How it works",
+      "howLead": "A simple funnel: context → analysis → plan.",
+      "flowTitle": "Flow",
+      "flow": ["Short intake", "Call + screen share", "Action plan + follow-up notes"],
+      "topicsTitle": "Topics",
+      "topics": [
+        "Product and scope",
+        "Production and pipelines",
+        "Tech architecture",
+        "Game design and economy"
+      ],
+      "finalTitle": "CTA",
+      "finalLead": "Ready to move forward?",
+      "finalBody": "Write a short message: what you’re building, where you’re stuck, what outcome you want."
+    },
+    "contacts": {
+      "title": "Contacts",
+      "lead": "A single place to reach out.",
+      "nextTitle": "Next",
+      "nextLead": "If you’re not sure what to write — send a short summary of your situation.",
+      "seeProjects": "See projects"
+    }
+  }
+}
