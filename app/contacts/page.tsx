@@ -43,7 +43,18 @@ export default function ContactsPage() {
                   {t("contacts.telegramLabel")}
                 </dt>
                 <dd className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
-                  {t("contacts.telegramValue")}
+                  <a
+                    className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
+                    href={
+                      t("contacts.telegramValue").startsWith("@")
+                        ? `https://t.me/${t("contacts.telegramValue").slice(1)}`
+                        : t("contacts.telegramValue")
+                    }
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {t("contacts.telegramValue")}
+                  </a>
                 </dd>
               </div>
               <div>
@@ -51,7 +62,14 @@ export default function ContactsPage() {
                   {t("contacts.discordLabel")}
                 </dt>
                 <dd className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
-                  {t("contacts.discordValue")}
+                  <a
+                    className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
+                    href={t("contacts.discordValue")}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {t("contacts.discordValue")}
+                  </a>
                 </dd>
               </div>
             </dl>
@@ -84,4 +102,3 @@ export default function ContactsPage() {
     </div>
   );
 }
-

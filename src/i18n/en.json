@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Ludens",
-    "description": "A personal showcase: game development, school, projects, consulting, contacts."
+    "description": "Dimitry Gudko — games, production, mentoring, and consulting. A warm, clear portal for people stepping into the new."
   },
   "brand": {
     "name": "Ludens"
@@ -28,124 +28,80 @@
     "close": "Close"
   },
   "hero": {
-    "title": "Games, learning, and practical work with teams",
-    "subtitle": "I build games, help people and teams ship, and teach how to develop with confidence.",
+    "title": "Drop the noise. Hold your line.",
+    "subtitle": "I’m Dimitry Gudko. I help people stepping into the new: get grounded, regain the spark, and move with clarity — together.",
     "cta": {
-      "school": "Go to School",
-      "projects": "See Projects",
-      "consulting": "Get Consulting",
-      "about": "About Me"
+      "school": "School",
+      "projects": "Projects",
+      "consulting": "Consulting",
+      "about": "About me"
     }
   },
   "overview": {
-    "title": "Directions",
+    "title": "Where to go next",
     "items": [
       {
-        "title": "Game Development",
-        "description": "Games, prototypes, systems, pipelines.",
+        "title": "Projects",
+        "description": "Open-source and live things you can join and contribute to.",
         "href": "#projects"
       },
       {
         "title": "School",
-        "description": "Mentorship, reviews, practice, courses.",
+        "description": "Self-support, clarity, team, and a prototype start.",
         "href": "#school"
       },
       {
-        "title": "Projects",
-        "description": "Active, in progress, and concepts.",
-        "href": "#projects"
+        "title": "Consulting",
+        "description": "If you’re drifting — we’ll get your line back and build a plan.",
+        "href": "#consulting"
       },
       {
-        "title": "Consulting",
-        "description": "Product, production, tech, and design decisions.",
-        "href": "#consulting"
+        "title": "Contacts",
+        "description": "Message me — I’ll suggest the next step.",
+        "href": "#contacts"
       }
     ]
   },
   "school": {
     "title": "School",
-    "lead": "Learning is built around practice: clear feedback, small iterations, and shipping.",
-    "whatYouLearnTitle": "What you can learn",
+    "lead": "A school about self-support and moving toward your project: quieter inside, clearer in your head, concrete in your steps.",
+    "whatYouLearnTitle": "What you get",
     "whatYouLearn": [
-      "Turn ideas into playable prototypes",
-      "Structure projects and work with scope",
-      "Build core loops, progression, and UX",
-      "Work with tools, assets, and pipelines"
+      "You find what drives you consistently (not a flash)",
+      "You shape a project vision and first decisions",
+      "You start a prototype (or understand what blocks it)",
+      "It becomes easier to hold the line when it’s noisy and scary"
     ],
     "formatsTitle": "Formats",
-    "formats": ["Mentorship", "Reviews", "Courses", "Hands-on project work"],
+    "formats": ["1:1 mentoring", "Reviews", "Mini-course / practice", "On-going support"],
     "forWhomTitle": "Who it's for",
     "forWhom": [
-      "Beginners who want a structured path",
-      "Indie developers who want to ship",
-      "Teams that need a clearer process"
+      "People stepping into the new and getting lost",
+      "Indies and early teams",
+      "“Not creative” people who want to open the channel"
     ],
     "cta": "Contact"
   },
   "projects": {
     "title": "Projects",
-    "lead": "A selection of what I'm building and exploring right now.",
+    "lead": "Live projects and ideas. If you want to be “in the work” — we’ll find your place.",
     "statuses": {
-      "active": "active",
+      "active": "live",
       "inProgress": "in progress",
       "in_progress": "in progress",
       "concept": "concept"
-    },
-    "items": [
-      {
-        "slug": "alpha",
-        "title": "Project Alpha",
-        "description": "A playable prototype with a focus on feel and iteration speed.",
-        "status": "inProgress",
-        "imageSrc": "",
-        "imageAlt": "Project Alpha cover",
-        "details": [
-          "A fast iteration loop: prototype → test → adjust.",
-          "Focus on feel, pacing, readability, and player feedback.",
-          "Small scope, high polish, frequent milestones."
-        ],
-        "links": []
-      },
-      {
-        "slug": "beta",
-        "title": "Project Beta",
-        "description": "A systems-driven experiment: economy, progression, and balance.",
-        "status": "concept",
-        "imageSrc": "",
-        "imageAlt": "Project Beta cover",
-        "details": [
-          "Designing a progression model and economy constraints.",
-          "Testing balance via simple simulators and playtests.",
-          "Exploring UX and clarity for complex systems."
-        ],
-        "links": []
-      },
-      {
-        "slug": "gamma",
-        "title": "Project Gamma",
-        "description": "A small shipped experience: polish, UX, and pipeline lessons.",
-        "status": "active",
-        "imageSrc": "",
-        "imageAlt": "Project Gamma cover",
-        "details": [
-          "A compact project shipped end-to-end.",
-          "A focus on finishing: menus, UX, feedback, stability.",
-          "Documented lessons for future pipelines."
-        ],
-        "links": []
-      }
-    ]
+    }
   },
   "about": {
     "title": "About",
-    "lead": "Short and clear: who I am and how I work.",
+    "lead": "Simplicity, reality, and a quiet drive — together.",
     "people": [
       {
-        "name": "Your Name",
-        "role": "Game Developer / Mentor",
-        "bio": "I help ship games and teach practical development through feedback and iterations.",
+        "name": "Dimitry Gudko",
+        "role": "Production • Games • 1:1 mentoring",
+        "bio": "I help you get grounded, separate noise from what’s real, and plan a path to the goal in a chaotic context — simply and humanly.",
         "photoSrc": "",
-        "photoAlt": "Portrait",
+        "photoAlt": "Portrait of Dimitry Gudko",
         "links": [
           { "label": "Telegram", "url": "https://t.me/yourhandle" },
           { "label": "GitHub", "url": "https://github.com/yourhandle" }
@@ -155,122 +111,124 @@
   },
   "consulting": {
     "title": "Consulting",
-    "lead": "1:1 sessions to unblock decisions and improve outcomes.",
-    "whatTitle": "What we can work on",
+    "lead": "When you step into the new and start drifting — I help you see reality, regain your line, and turn it into steps.",
+    "whatTitle": "Typical requests",
     "what": [
-      "Product direction and feature prioritization",
-      "Production planning and scope control",
-      "Technical and architectural choices",
-      "Game design and economy reviews"
+      "I want to do X, never did it — where do I start?",
+      "My creative work feels bland — how do I bring it to life?",
+      "A team started strong and got stuck — how do we regain momentum?",
+      "I’m “the leader” but I’m running after everyone — how do I fix it?",
+      "I feel unfree even alone — how do I become freer?"
     ],
     "forWhomTitle": "Who it's for",
-    "forWhom": ["Indie developers", "Teams", "Companies", "Individual specialists"],
-    "cta": "Contact"
+    "forWhom": ["Individuals", "Teams", "Game dev & creative work", "Decision-makers"],
+    "cta": "Request a session"
   },
   "contacts": {
     "title": "Contacts",
-    "lead": "Reach out in any convenient way.",
+    "lead": "One small step to “you belong here”. Message me as you are — I’ll reply.",
     "emailLabel": "Email",
-    "emailValue": "hello@example.com",
+    "emailValue": "hello@ludens.school",
     "telegramLabel": "Telegram",
     "telegramValue": "@yourhandle",
     "discordLabel": "Discord",
-    "discordValue": "yourname",
+    "discordValue": "https://discord.gg/your-invite",
     "writeCta": "Write a message"
   },
   "footer": {
     "copyright": "© {year} Ludens"
   },
   "content": {
-    "howToTitle": "How to edit content",
-    "howToBody": "Edit translations in src/i18n/en.json and src/i18n/ru.json. Section layout lives in components/Landing.tsx."
+    "howToTitle": "Where to edit content",
+    "howToBody": "Texts: src/i18n/en.json and src/i18n/ru.json. Projects for /projects/*: src/data/projects.ts. Images: public/images/**."
   },
   "pages": {
     "projects": {
       "title": "Projects",
-      "lead": "Project cards with short descriptions and separate pages for deeper details.",
+      "lead": "Project cards with a short summary and separate pages for deeper context.",
       "gridTitle": "Project list",
-      "gridLead": "Pick a project to see details.",
+      "gridLead": "Pick a project to open details.",
       "openProject": "Open project",
       "allProjects": "All projects",
       "back": "Back to projects",
       "notFound": "Project not found",
       "detailsTitle": "Details",
-      "detailsLead": "Short notes and context you can expand later.",
+      "detailsLead": "Short text and context. You can expand with screenshots, links, and progress logs.",
       "noImageTitle": "No image yet",
-      "noImageLead": "Add a cover in public/images and set imageSrc in i18n."
+      "noImageLead": "Add a cover to public/images and wire it in code."
     },
     "school": {
       "title": "School",
-      "lead": "A practical course on how to make games: structure, iteration, shipping.",
+      "lead": "Self-support, clarity, and a path to your project — without spinning and noise.",
       "cta": "Contact",
       "approachTitle": "Approach",
-      "approachLead": "Simple, repeatable, practice-first.",
+      "approachLead": "Calm, direct, and practical.",
       "approachPoints": [
-        "Small steps and weekly feedback.",
-        "Clear goals and measurable results.",
-        "Learn by shipping, not by theory alone."
+        "We ground in reality: what is, what matters, what blocks you.",
+        "We drop the noise and hold the line.",
+        "We move in small steps — consistently."
       ],
-      "programTitle": "Program",
-      "programLead": "A structure you can adapt to your level and goals.",
+      "programTitle": "Program (MVP)",
+      "programLead": "A skeleton adapted to your level and context.",
       "modulesTitle": "Modules",
       "modules": [
-        "Idea → prototype",
-        "Core loop and UX",
-        "Scope and production plan",
-        "Polish and release checklist"
+        "Self-support: what’s yours vs what’s noise",
+        "Idea and project vision",
+        "First steps: prototype and quality criteria",
+        "Teamwork without friction",
+        "A path plan: from “now” to “it happened”"
       ],
       "outcomesTitle": "Outcomes",
       "outcomes": [
-        "A playable prototype or vertical slice",
-        "A repeatable workflow",
-        "Better decision-making under constraints"
+        "Quieter and clearer inside",
+        "Project vision and first decisions",
+        "Prototype start and clear next steps"
       ],
       "formatsTitle": "Formats",
-      "formatsLead": "Choose what fits your pace and budget.",
-      "formats": ["Mentorship", "Reviews", "Courses", "Hands-on project work"],
+      "formatsLead": "We’ll pick what fits your pace and budget.",
+      "formats": ["1:1 mentoring", "Reviews", "Mini-course / practice", "On-going support"],
       "finalTitle": "Next step",
-      "finalLead": "Tell me your goal and your current level.",
-      "finalBody": "I’ll suggest the best format and a first iteration plan."
+      "finalLead": "Write what you want to do and where you got stuck.",
+      "finalBody": "I’ll reply with a good starting point and the right format."
     },
     "about": {
       "title": "About",
       "lead": "People behind the work.",
       "teamTitle": "Team",
-      "teamLead": "Short summaries with links to profiles.",
+      "teamLead": "Short summaries with profile links.",
       "cta": "Contact"
     },
     "consulting": {
       "title": "Consulting",
-      "lead": "1:1 sessions to unblock decisions, reduce risks, and improve outcomes.",
-      "cta": "Contact",
+      "lead": "1:1 sessions: see reality, regain your line, build a plan. $100–$150 per session, no hard time limit.",
+      "cta": "Write me",
       "whyTitle": "Why it helps",
-      "whyLead": "Typical situations where consulting saves time.",
+      "whyLead": "When it’s noisy inside, it’s easy to miss. We’ll make it quieter and sharper.",
       "whyPoints": [
-        "You’re stuck on product direction or priorities.",
-        "You need a production plan that fits reality.",
-        "You want an external review for design/tech decisions."
+        "You step into the new and lose the spark.",
+        "You lead, but you carry everything and start falling apart.",
+        "A team got stuck and stopped moving."
       ],
       "howTitle": "How it works",
-      "howLead": "A simple funnel: context → analysis → plan.",
+      "howLead": "A simple funnel: context → clarity → plan → motion.",
       "flowTitle": "Flow",
-      "flow": ["Short intake", "Call + screen share", "Action plan + follow-up notes"],
+      "flow": ["Short intake message", "Call", "Action plan + next step"],
       "topicsTitle": "Topics",
       "topics": [
-        "Product and scope",
-        "Production and pipelines",
-        "Tech architecture",
-        "Game design and economy"
+        "Production and moving to a goal in chaos",
+        "Leadership and boundaries",
+        "Creative clarity and taste",
+        "Teams and collaboration"
       ],
       "finalTitle": "CTA",
-      "finalLead": "Ready to move forward?",
-      "finalBody": "Write a short message: what you’re building, where you’re stuck, what outcome you want."
+      "finalLead": "Ready to move?",
+      "finalBody": "Write 3 lines: 1) what you’re doing 2) where you’re stuck 3) what outcome you want."
     },
     "contacts": {
       "title": "Contacts",
-      "lead": "A single place to reach out.",
-      "nextTitle": "Next",
-      "nextLead": "If you’re not sure what to write — send a short summary of your situation.",
+      "lead": "One page to reach out.",
+      "nextTitle": "How to write",
+      "nextLead": "Three lines — and we can already work.",
       "seeProjects": "See projects"
     }
   }
