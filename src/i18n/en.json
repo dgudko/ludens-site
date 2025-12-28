@@ -99,9 +99,16 @@
     "projects": {
       "title": "Projects",
       "lead": "A catalog of projects with separate pages — clear “what / status / how to join”.",
-      "filtersTitle": "Filters",
-      "filtersLead": "Pick a status or tag — the page updates instantly (no reload).",
-      "filters": { "status": "Status", "tags": "Tags", "all": "All" },
+      "filtersTitle": "Choose your way",
+      "filtersLead": "Pick one intention. Tap again to reset.",
+      "filters": { "pick": "Intent" },
+      "intents": {
+        "concept": "Concept",
+        "inWork": "In work",
+        "live": "Live",
+        "school": "School",
+        "consulting": "1:1"
+      },
       "gridTitle": "Project list",
       "gridLead": "Open a project — the page explains what it is and how to join.",
       "openProject": "Open",

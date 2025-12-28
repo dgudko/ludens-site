@@ -1,6 +1,5 @@
 (() => {
-  const BACKEND_BASE = "https://api.ludens.school";
-  const CREATE_PATH = "/create";
+  const CREATE_URL = "https://api.ludens.school/pay/api/create";
 
   const MAX_TOKENS = 1_000_000;
   const MIN_TOKENS = 1;
@@ -103,11 +102,10 @@
   }
 
   function buildRedirectUrl({ account, tokens, currency }) {
-    const url = new URL(CREATE_PATH, BACKEND_BASE);
-    url.searchParams.set("account", account);
-    url.searchParams.set("tokens", String(tokens));
-    url.searchParams.set("currency", currency);
-    return url.toString();
+    const accountParam = encodeURIComponent(account);
+    const currencyParam = encodeURIComponent(currency);
+    const tokensParam = String(tokens);
+    return `${CREATE_URL}?account=${accountParam}&tokens=${tokensParam}&currency=${currencyParam}`;
   }
 
   function main() {

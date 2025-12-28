@@ -17,24 +17,48 @@ function statusLabelKey(status: ProjectStatus | undefined) {
 
 export function ProjectsPageClient({ projects }: { projects: Project[] }) {
   const { lang, t, ta } = useI18n();
-  const [statusFilter, setStatusFilter] = useState<ProjectStatus | "all">("all");
-  const [tagFilter, setTagFilter] = useState<string | "all">("all");
+  const [intent, setIntent] = useState<
+    "concept" | "in_work" | "live" | "school" | "consulting" | null
+  >(null);
 
-  const tags = useMemo(() => {
-    const set = new Set<string>();
-    for (const project of projects) {
-      for (const tag of project.tags ?? []) set.add(tag);
-    }
-    return Array.from(set).sort((a, b) => a.localeCompare(b));
-  }, [projects]);
+  const intents = useMemo(() => {
+    const tagIncludes = (value: string) => (project: Project) =>
+      (project.tags ?? []).includes(value);
+
+    return [
+      {
+        id: "concept" as const,
+        label: t("pages.projects.intents.concept"),
+        predicate: (project: Project) => project.status === "concept",
+      },
+      {
+        id: "in_work" as const,
+        label: t("pages.projects.intents.inWork"),
+        predicate: (project: Project) => project.status === "in_progress",
+      },
+      {
+        id: "live" as const,
+        label: t("pages.projects.intents.live"),
+        predicate: (project: Project) => project.status === "active",
+      },
+      {
+        id: "school" as const,
+        label: t("pages.projects.intents.school"),
+        predicate: tagIncludes("Education"),
+      },
+      {
+        id: "consulting" as const,
+        label: t("pages.projects.intents.consulting"),
+        predicate: tagIncludes("Consulting"),
+      },
+    ];
+  }, [t]);
 
   const filtered = useMemo(() => {
-    return projects.filter((project) => {
-      const statusOk = statusFilter === "all" ? true : project.status === statusFilter;
-      const tagOk = tagFilter === "all" ? true : (project.tags ?? []).includes(tagFilter);
-      return statusOk && tagOk;
-    });
-  }, [projects, statusFilter, tagFilter]);
+    const selected = intents.find((i) => i.id === intent);
+    if (!selected) return projects;
+    return projects.filter(selected.predicate);
+  }, [projects, intents, intent]);
 
   function statusVariant(status: ProjectStatus) {
     if (status === "active") return "good" as const;
@@ -56,36 +80,17 @@ export function ProjectsPageClient({ projects }: { projects: Project[] }) {
       </div>
 
       <Section id="projects-filters" title={t("pages.projects.filtersTitle")} lead={t("pages.projects.filtersLead")}>
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-wrap items-center gap-2">
-            <Pill className="mr-1">{t("pages.projects.filters.status")}</Pill>
-            <PillButton isActive={statusFilter === "all"} onClick={() => setStatusFilter("all")}>
-              {t("pages.projects.filters.all")}
+        <div className="flex flex-wrap items-center gap-2">
+          <Pill className="mr-1">{t("pages.projects.filters.pick")}</Pill>
+          {intents.map((item) => (
+            <PillButton
+              key={item.id}
+              isActive={intent === item.id}
+              onClick={() => setIntent((current) => (current === item.id ? null : item.id))}
+            >
+              {item.label}
             </PillButton>
-            <PillButton isActive={statusFilter === "active"} onClick={() => setStatusFilter("active")}>
-              {t(statusLabelKey("active"))}
-            </PillButton>
-            <PillButton isActive={statusFilter === "in_progress"} onClick={() => setStatusFilter("in_progress")}>
-              {t(statusLabelKey("in_progress"))}
-            </PillButton>
-            <PillButton isActive={statusFilter === "concept"} onClick={() => setStatusFilter("concept")}>
-              {t(statusLabelKey("concept"))}
-            </PillButton>
-          </div>
-
-          {tags.length ? (
-            <div className="flex flex-wrap items-center gap-2">
-              <Pill className="mr-1">{t("pages.projects.filters.tags")}</Pill>
-              <PillButton isActive={tagFilter === "all"} onClick={() => setTagFilter("all")}>
-                {t("pages.projects.filters.all")}
-              </PillButton>
-              {tags.map((tag) => (
-                <PillButton key={tag} isActive={tagFilter === tag} onClick={() => setTagFilter(tag)}>
-                  {tag}
-                </PillButton>
-              ))}
-            </div>
-          ) : null}
+          ))}
         </div>
       </Section>
 
