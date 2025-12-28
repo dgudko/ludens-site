@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useId, useMemo, useState } from "react";
 import { useI18n } from "@/i18n/I18nProvider";
 import { cn } from "@/ui/cn";
-import { Container } from "@/components/Container";
+import { Container } from "@/components/ui/Container";
 
 type NavItem = { id: string; labelKey: string; href: string };
 

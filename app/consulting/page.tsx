@@ -1,9 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useI18n } from "@/i18n/I18nProvider";
-import { Container } from "@/components/Container";
-import { Section } from "@/components/Section";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Container } from "@/components/ui/Container";
+import { Section } from "@/components/ui/Section";
 
 export default function ConsultingPage() {
   const { t, ta } = useI18n();
@@ -19,12 +20,7 @@ export default function ConsultingPage() {
             {t("pages.consulting.lead")}
           </p>
           <div className="mt-6">
-            <Link
-              href="/contacts/"
-              className="inline-flex h-11 items-center justify-center rounded-full bg-zinc-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
-            >
-              {t("pages.consulting.cta")}
-            </Link>
+            <Button href="/contacts/">{t("pages.consulting.cta")}</Button>
           </div>
         </Container>
       </div>
@@ -32,19 +28,16 @@ export default function ConsultingPage() {
       <Section id="consulting-why" title={t("pages.consulting.whyTitle")} lead={t("pages.consulting.whyLead")}>
         <div className="grid gap-4 lg:grid-cols-3">
           {ta("pages.consulting.whyPoints").map((point) => (
-            <div
-              key={point}
-              className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-white/15 dark:bg-zinc-950"
-            >
+            <Card key={point} className="p-6 transition-shadow hover:shadow-md">
               <div className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">{point}</div>
-            </div>
+            </Card>
           ))}
         </div>
       </Section>
 
       <Section id="consulting-how" title={t("pages.consulting.howTitle")} lead={t("pages.consulting.howLead")}>
         <div className="grid gap-4 lg:grid-cols-2">
-          <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/15 dark:bg-zinc-950">
+          <Card>
             <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
               {t("pages.consulting.flowTitle")}
             </div>
@@ -56,8 +49,8 @@ export default function ConsultingPage() {
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/15 dark:bg-zinc-950">
+          </Card>
+          <Card>
             <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
               {t("pages.consulting.topicsTitle")}
             </div>
@@ -69,24 +62,19 @@ export default function ConsultingPage() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Card>
         </div>
       </Section>
 
       <Section id="consulting-cta" title={t("pages.consulting.finalTitle")} lead={t("pages.consulting.finalLead")}>
-        <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/15 dark:bg-zinc-950">
+        <Card>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-              {t("pages.consulting.finalBody")}
+            <div className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">{t("pages.consulting.finalBody")}</div>
+            <div className="text-sm font-semibold text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200">
+              <a href="/contacts/">{t("pages.consulting.cta")}</a>
             </div>
-            <Link
-              href="/contacts/"
-              className="inline-flex h-11 items-center justify-center rounded-full bg-zinc-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
-            >
-              {t("pages.consulting.cta")}
-            </Link>
           </div>
-        </div>
+        </Card>
       </Section>
     </div>
   );

@@ -1,221 +1,251 @@
 export type ProjectStatus = "active" | "in_progress" | "concept";
 
-export type LocalizedText = {
-  ru: string;
-  en: string;
+export type Localized<T> = {
+  ru: T;
+  en: T;
 };
 
+export type LocalizedText = Localized<string>;
+
 export type ProjectLink = {
-  label: string;
-  url: string;
+  label: LocalizedText;
+  href: string;
+};
+
+export type ProjectRoadmap = {
+  done: string[];
+  now: string[];
+  next: string[];
 };
 
 export type Project = {
   slug: string;
   title: LocalizedText;
-  summary: LocalizedText;
-  content?: LocalizedText;
-  status?: ProjectStatus;
+  oneLiner: LocalizedText;
+  why: LocalizedText;
+  what: Localized<string[]>;
+  status: ProjectStatus;
+  statusText?: LocalizedText;
+  participation: Localized<string[]>;
+  roadmap: Localized<ProjectRoadmap>;
   links?: ProjectLink[];
+  tags?: string[];
+  cta?: {
+    label: LocalizedText;
+    href: string;
+  };
 };
 
 export const projects: Project[] = [
   {
     slug: "l2-ludens",
     title: { ru: "L2 Ludens", en: "L2 Ludens" },
-    summary: {
-      ru: "Lineage 2 High Five: тот самый дух — без боли. Сервер от людей для людей, честно и понятно.",
-      en: "Lineage 2 High Five with the original spirit — without the pain. From people to people: honest and clear.",
+    oneLiner: {
+      ru: "Lineage 2 High Five: дух той самой игры — без боли. Честный сервер от людей для людей.",
+      en: "Lineage 2 High Five with the original spirit — without the pain. From people to people.",
     },
-    content: {
+    why: {
+      ru: "Я годами искал «тот самый» сервер. Заебался и сделал свой — понятно, честно, с уважением к миру и людям. Сервер уже живой: можно заходить и играть. Дальше — делаем вместе.",
+      en: "I spent years looking for “that” server. Got tired and built my own: clear, honest, and respectful to the world and players. It’s already live — you can play now. Next: we build it together.",
+    },
+    what: {
       ru: [
-        "Я годами не мог найти \"тот самый\" Lineage сервер. Заебался — сделал свой.",
-        "",
-        "Разрабатываю открыто. Если хочешь — залетай: и как игрок, и как разработчик.",
-        "",
-        "## Для партнёров-разработчиков",
-        "- SSOT-документация (Specs/ADRs/Ops) — меньше догадок по коду, проще влетать в контекст и спорить предметно.",
-        "- Конфиг-драйв баланс — правки темпа/стоимостей живут в настройках, не надо пересобирать сервер ради экономики.",
-        "- QoL без \"сломать мир\" — удобство добавляется так, чтобы не убивать смысл дорог, городов и встреч в мире.",
-        "- Экономика как часть дизайна — меньше \"адена из воздуха\": фичи сразу учитывают sinks/loops.",
-        "- Социальные механики вместо обязаловки — меньше стимулов к мультибоксу/бот-рутине, больше причин играть с людьми.",
-        "- Прозрачность управления — понятные правила, изменения и границы. Меньше паранойи про \"админ рисует\".",
-        "- Фичи оформлены как продукты — у каждой есть \"зачем игроку\" и критерии успеха, а не только \"как сделать\".",
-        "- Рабочая площадка для сайта+сервера — можно вместе пилить и веб, и геймдизайн, и контент, не тонув в хаосе.",
-        "",
-        "## Для игроков",
-        "- Прогрессивная стоимость телепортов — до 20 телепорты бесплатны, дальше цена растёт вместе с твоим доходом.",
-        "- Телепорт в катакомбы/некрополи через жрецов — быстрее попадаешь \"в дело\" для Seven Signs.",
-        "- Костры: отдых и \"присутствие\" в мире — понятные точки, где приятно остановиться и почувствовать живой мир.",
-        "- Отдых и буст опыта (мягкая поддержка, не обязаловка) — меньше ощущения \"если не гринжу — отстаю\".",
-        "- Adventure Points и прогресс за исследование — игра ценит путь, а не только часы на одном споте.",
-        "- Продажа бафов игроками — бафы становятся частью экономики и общения, меньше боли с окнами.",
-        "- Глобальный чат через Trade — общение в игре, но без бесконечного спама.",
-        "- Автолут — меньше кликов, больше игры.",
-        "- Чемпионские мобы и читаемые ауры — больше \"вызова по делу\", меньше непонятных ваншотов.",
-        "- Локализация и новичковые бафы — старт без боли: понятнее и быстрее входишь в темп High Five.",
-        "",
-        "## В планах (по роадмапу)",
-        "- Премиум \"QoL, not power\" (в дизайне) — приятнее играть, но без pay-to-win.",
-        "- Видимость сервера + памятка/обучение в Tutorial Book и Alt+B — новичкам проще понять \"что тут за сервер\".",
-        "- Живая экономика / живое PvE / общие PvE-цели — меньше соло-выживания, больше кооператива и смысла в мире.",
-        "- Кооперативные Seven Signs — ощущение \"фракционной войны\" вместо формальности.",
-        "- Фракции с контрактами, клановая RPG-прогрессия, Buddies — больше причин держаться вместе.",
-        "- Offline Adventure — прогресс \"для людей с жизнью\", без обязаловки сидеть онлайн.",
-      ].join("\n"),
+        "High Five, с приоритетом на «живой мир», а не на гонку за цифрами",
+        "QoL, который не ломает смысл дорог, городов и встреч",
+        "Экономика как часть дизайна: меньше «адена из воздуха», больше понятных циклов",
+        "Открытая разработка и прозрачные правила",
+      ],
       en: [
-        "I couldn't find \"that\" Lineage server for years. Got tired — built my own.",
-        "",
-        "We develop in the open. Join as a player or as a contributor.",
-        "",
-        "## For dev partners",
-        "- SSOT docs (Specs/ADRs/Ops): less guessing from code, easier onboarding and real discussions.",
-        "- Config-driven balance: tempo/economy tweaks live in config, not rebuilds.",
-        "- QoL without \"breaking the world\": convenience that keeps cities, roads, and meetings meaningful.",
-        "- Economy as design: less \"adena from thin air\"; features account for sinks/loops.",
-        "- Social mechanics over chores: fewer incentives for multibox/bot routine, more reasons to play with people.",
-        "- Transparent governance: clear rules, changes, and boundaries.",
-        "- Features as products: each has \"why for the player\" and success criteria, not only implementation.",
-        "- A shared workspace: web + game design + content, without drowning in chaos.",
-        "",
-        "## For players",
-        "- Progressive teleport cost: free up to level 20, then scales with your income.",
-        "- Catacombs/necropolis teleport via priests: faster access for Seven Signs.",
-        "- Campfires: rest and presence in the world.",
-        "- Rest XP boost (support, not a must): less FOMO.",
-        "- Adventure Points and exploration progress: the journey matters.",
-        "- Player-sold buffs: buffs become economy + social layer, less pain with windows.",
-        "- Global chat via Trade: in-game world chat, less spam.",
-        "- Auto-loot: less clicking, more playing.",
-        "",
-        "## Roadmap",
-        "- Premium: QoL, not power.",
-        "- Better visibility + onboarding (Tutorial Book / Alt+B).",
-        "- Living economy / living PvE / shared PvE goals.",
-        "- Cooperative Seven Signs.",
-        "- Factions, contracts, clan RPG progression, buddies.",
-        "- Offline Adventure: progress for people with a life.",
-      ].join("\n"),
+        "High Five with a focus on a living world (not just numbers)",
+        "QoL that doesn’t kill the meaning of cities, roads, and meetings",
+        "Economy as part of design: fewer “free adena” loopholes, more clear loops",
+        "Open development and transparent rules",
+      ],
+    },
+    roadmap: {
+      ru: {
+        done: [
+          "Сервер запущен и доступен игрокам",
+          "Комьюнити и правила живут в Discord",
+          "Есть роадмап и трекинг задач",
+        ],
+        now: [
+          "Онбординг новичков: памятки, подсказки, «что за сервер»",
+          "Баланс и QoL итерации без pay-to-win",
+          "Привлечение контрибьюторов (код/контент/дизайн)",
+        ],
+        next: [
+          "Более «живое PvE»: общие цели и причины кооперироваться",
+          "Инструменты против рутины (для людей с жизнью)",
+          "Расширение фич по роадмапу",
+        ],
+      },
+      en: {
+        done: ["Server is live", "Community & rules in Discord", "Roadmap and task tracking are in place"],
+        now: ["New player onboarding", "Balance/QoL iterations (no pay-to-win)", "Contributor onboarding (code/content/design)"],
+        next: ["More “living PvE” and shared goals", "Less routine: progress for people with a life", "More roadmap features"],
+      },
+    },
+    participation: {
+      ru: [
+        "Зайти и поиграть — дать фидбек (что кайф, что бесит, что непонятно)",
+        "Помочь разработкой (server/devops/web), обсудить фичи",
+        "Помочь контентом: тексты, гайды, онбординг, UX для новичков",
+      ],
+      en: [
+        "Play and give feedback (what’s great, what’s annoying, what’s unclear)",
+        "Contribute (server/devops/web), discuss features",
+        "Help with content: guides, onboarding, newbie UX",
+      ],
     },
     links: [
-      { label: "Discord", url: "https://discord.gg/kCNcu9zCnM" },
-      { label: "GitHub", url: "https://github.com/nikitakhotchenkov/Ludens-L2" },
-      { label: "Roadmap", url: "https://trello.com/b/1dWryWeO/l2-ludens" },
+      { label: { ru: "Discord", en: "Discord" }, href: "https://discord.gg/kCNcu9zCnM" },
+      { label: { ru: "GitHub", en: "GitHub" }, href: "https://github.com/nikitakhotchenkov/Ludens-L2" },
+      { label: { ru: "Roadmap", en: "Roadmap" }, href: "https://trello.com/b/1dWryWeO/l2-ludens" },
       {
-        label: "Client download",
-        url: "https://drive.google.com/file/d/1OXeWvINSA9pMCg1i4iooUsASHxoCVP3S/view",
+        label: { ru: "Скачать клиент", en: "Download client" },
+        href: "https://drive.google.com/file/d/1OXeWvINSA9pMCg1i4iooUsASHxoCVP3S/view",
       },
     ],
+    tags: ["L2", "High Five", "MMO", "Open source"],
     status: "active",
+    cta: {
+      label: { ru: "Зайти в Discord", en: "Join Discord" },
+      href: "https://discord.gg/kCNcu9zCnM",
+    },
   },
   {
     slug: "borsh",
-    title: { ru: "Borsh (Unreal co-op)", en: "Borsh (Unreal co-op)" },
-    summary: {
-      ru: "Ко-оп на Unreal: вместе выбираемся из огромной ямы, где снизу поднимается лава. Стадия — концепт.",
-      en: "Unreal co-op: escape a huge pit while lava rises. Stage: concept.",
+    title: { ru: "Borsh", en: "Borsh" },
+    oneLiner: {
+      ru: "Unreal co‑op: вместе выбираемся из жерла вулкана, пока лава поднимается.",
+      en: "Unreal co-op: escape a volcano crater together while lava rises.",
     },
-    content: {
+    why: {
+      ru: "Хочется кооператива, где команда реально «держит линию» — и это чувствуется в геймплее. Сейчас стадия концепта: собираем людей и делаем прототип.",
+      en: "We want co-op where the team truly “holds the line” and you feel it in gameplay. It’s concept stage: we’re gathering people and building a prototype.",
+    },
+    what: {
       ru: [
-        "Рабочее имя: Borsh.",
-        "",
-        "Питч: в ко-опе выбираемся из жерла просыпающегося вулкана. Нужны люди, которые любят совместный геймплей и хороший темп.",
-        "",
-        "## Кого ищем",
-        "- Геймдизайнера",
-        "- 3D артовика",
-        "- SFX/VFX/Animation/UI — тоже велкам, разберёмся, куда применить",
-        "",
-        "Стадия: концепт. В команде сейчас я (визионер/дизайн) и 2 программиста. Делаем open source.",
-      ].join("\n"),
+        "Unreal Engine, кооператив на 2–4 игроков",
+        "Вертикальный темп: снизу поднимается лава — вылезай вместе",
+        "Ставка на синергию, а не на соло‑геройство",
+      ],
       en: [
-        "Working title: Borsh.",
-        "",
-        "Pitch: a co-op escape from a waking volcano crater while lava rises below.",
-        "",
-        "## Looking for",
-        "- Game designer",
-        "- 3D artist",
-        "- SFX/VFX/Animation/UI — welcome too",
-        "",
-        "Stage: concept. Team: me (vision/design) + 2 programmers. Open source.",
-      ].join("\n"),
+        "Unreal Engine, co-op for 2–4 players",
+        "Vertical pressure: lava rises — climb together",
+        "Synergy over solo heroics",
+      ],
+    },
+    roadmap: {
+      ru: {
+        done: ["Питч и концепт", "Репозиторий открыт"],
+        now: ["Сбор команды (GD/3D/SFX/VFX/UI)", "Прототип базовой петли"],
+        next: ["Вертикальный срез", "Плейтесты и итерации"],
+      },
+      en: {
+        done: ["Pitch and concept", "Open repo"],
+        now: ["Team building (GD/3D/SFX/VFX/UI)", "Core loop prototype"],
+        next: ["Vertical slice", "Playtests and iteration"],
+      },
+    },
+    participation: {
+      ru: [
+        "Залететь в Discord и познакомиться",
+        "Помочь с геймдизайном или 3D (или чем умеешь)",
+        "Поиграть в прототип и дать фидбек по темпу/кайфу",
+      ],
+      en: ["Join Discord", "Contribute (GD/3D/etc.)", "Playtest prototypes and give feedback"],
     },
     links: [
-      { label: "Discord", url: "https://discord.gg/QaZkzxQfHn" },
-      { label: "GitHub", url: "https://github.com/dgudko/borsh" },
+      { label: { ru: "Discord", en: "Discord" }, href: "https://discord.gg/QaZkzxQfHn" },
+      { label: { ru: "GitHub", en: "GitHub" }, href: "https://github.com/dgudko/borsh" },
     ],
+    tags: ["Unreal", "Co-op", "Prototype"],
     status: "concept",
+    cta: { label: { ru: "Следить в Discord", en: "Follow in Discord" }, href: "https://discord.gg/QaZkzxQfHn" },
   },
   {
     slug: "ludens-school",
     title: { ru: "Ludens School", en: "Ludens School" },
-    summary: {
-      ru: "Школа про опору на себя, ясность и путь к проекту. Пока в замысле, но непременно прибудет.",
-      en: "A school about self-support, clarity, and a path to your project. Still a concept — coming.",
+    oneLiner: {
+      ru: "Школа про опору на себя, ясность и путь к проекту — без метаний и шума.",
+      en: "A school about self-support, clarity, and a path to your project — without spinning and noise.",
     },
-    content: {
+    why: {
+      ru: "Я хочу учить делать игры так, чтобы они были живыми — и чтобы тебе не пришлось воевать с собой по дороге. Пока это концепт: собираем комьюнити и первые форматы.",
+      en: "I want to teach game making in a way that keeps it alive — without fighting yourself along the way. It’s a concept for now: we’re gathering community and shaping formats.",
+    },
+    what: {
       ru: [
-        "Это не школа \"будь творческим\". Это школа про то, как держаться на себе и доводить до результата.",
-        "",
-        "## Успешный результат",
-        "- Системно понял, что тебя драйвит (не вспышка)",
-        "- Тише внутри: меньше сомнений и метаний",
-        "- Есть видение проекта и первые решения",
-        "- Запустил прототип, ясно куда дальше (и куда лучше не ходить)",
-        "",
-        "## Где жить комьюнити",
-        "- Discord для школы: заходи, знакомься, задавай вопросы",
-        "- Email — чтобы не потеряться (лист ожидания)",
-      ].join("\n"),
+        "Опора на себя: что твоё, а что шум",
+        "Видение проекта и первые решения",
+        "Старт прототипа и понятные следующие шаги",
+        "Команда без трения (или ясный соло‑путь)",
+      ],
       en: [
-        "Not a \"be creative\" school. It's about self-support, clarity, and shipping.",
-        "",
-        "## Success looks like",
-        "- You find what drives you consistently (not a flash)",
-        "- It's quieter inside: less doubt and spinning",
-        "- You have a project vision and first decisions",
-        "- You start a prototype and see clear next steps",
-        "",
-        "## Where the community lives",
-        "- Discord: join, meet people, ask questions",
-        "- Email: a waitlist so we don't lose each other",
-      ].join("\n"),
+        "Self-support: what’s yours vs what’s noise",
+        "Project vision and first decisions",
+        "Prototype start and clear next steps",
+        "Teamwork without friction (or a clear solo path)",
+      ],
     },
-    links: [{ label: "Discord", url: "https://discord.gg/7qtrx9Jm8f" }],
+    roadmap: {
+      ru: {
+        done: ["Собран вижн и черновая программа"],
+        now: ["Лист ожидания + Discord", "Первые разборы/встречи в тестовом режиме"],
+        next: ["Пилотный набор", "Первые кейсы и публичные материалы"],
+      },
+      en: {
+        done: ["Vision and draft program"],
+        now: ["Waitlist + Discord", "First test sessions"],
+        next: ["Pilot cohort", "First cases and public materials"],
+      },
+    },
+    participation: {
+      ru: ["Зайти в Discord школы", "Оставить email в лист ожидания", "Принести свой кейс/проект на разбор"],
+      en: ["Join the school Discord", "Leave email on the waitlist", "Bring your case/project for review"],
+    },
+    links: [{ label: { ru: "Discord", en: "Discord" }, href: "https://discord.gg/7qtrx9Jm8f" }],
+    tags: ["Education", "Mentoring"],
     status: "concept",
+    cta: { label: { ru: "Зайти в Discord", en: "Join Discord" }, href: "https://discord.gg/7qtrx9Jm8f" },
   },
   {
     slug: "consulting-1on1",
-    title: { ru: "Личное консультирование 1:1", en: "1:1 consulting" },
-    summary: {
-      ru: "Когда входишь в новое и теряешься — помогу сориентироваться, вернуть вдохновение и держать свою линию.",
-      en: "When you step into the new and start drifting — I help you regain your line and move with clarity.",
+    title: { ru: "Консультации 1:1", en: "1:1 consulting" },
+    oneLiner: {
+      ru: "Если входишь в новое и растекаешься — помогу собрать линию и пойти дальше.",
+      en: "When you step into the new and start drifting — I help you regain your line and move forward.",
     },
-    content: {
+    why: {
+      ru: "Широкий профиль: реальность, ясность, решения. Иногда — тихо и спокойно. Иногда — с огоньком, когда надо.",
+      en: "Broad profile: reality, clarity, decisions. Sometimes calm and quiet. Sometimes with a spark — when needed.",
+    },
+    what: {
       ru: [
-        "Широкий профиль: помогаю посмотреть на тупик с другой точки зрения, увидеть слепые пятна и найти решения, которые подходят именно тебе.",
-        "",
-        "Цена: $100–$150 за встречу. По времени не ограничена — работаем, пока не станет ясно.",
-        "",
-        "## Бесплатно / платно",
-        "- Если я сам так хочу и это массово/публично — делаю бесплатно",
-        "- Если ко мне приходят с запросом \"реши мне вот это\" — тогда платно",
-        "- Студенты и молодые команды (первый проект): первая встреча бесплатно",
-      ].join("\n"),
+        "Разбираем, где именно ты застрял (без самообмана и без унижения)",
+        "Отделяем лишнее от настоящего",
+        "Собираем простой план и следующий шаг",
+      ],
       en: [
-        "Broad profile: we look at your stuck point from a new angle, find blind spots, and design a path that fits you.",
-        "",
-        "Price: $100–$150 per session. No hard time limit — we work until it's clear.",
-        "",
-        "## Free vs paid",
-        "- If I want it and it is public/mass — I do it for free",
-        "- If you come with \"solve this for me\" — it's paid",
-        "- Students and first-time teams: first session is free",
-      ].join("\n"),
+        "We find where you’re actually stuck (no self-deception, no shame)",
+        "We separate noise from what’s real",
+        "We build a simple plan and next step",
+      ],
     },
-    links: [{ label: "Write", url: "/contacts/" }],
+    roadmap: {
+      ru: { done: ["Формат 1:1 доступен"], now: ["Сбор кейсов и отзывов"], next: ["Системная программа сопровождения"] },
+      en: { done: ["1:1 format is available"], now: ["Collecting cases and feedback"], next: ["A structured long-term program"] },
+    },
+    participation: {
+      ru: ["Написать в Telegram/Email с 3 строками: что делаешь, где залип, какой результат хочешь"],
+      en: ["Message on Telegram/email with 3 lines: what you do, where you’re stuck, what outcome you want"],
+    },
+    links: [{ label: { ru: "Контакты", en: "Contacts" }, href: "/contacts/" }],
+    tags: ["Consulting", "1:1"],
     status: "active",
+    cta: { label: { ru: "Написать", en: "Write me" }, href: "/contacts/" },
   },
 ];
 

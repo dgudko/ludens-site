@@ -1,17 +1,46 @@
 "use client";
 
 import Link from "next/link";
+import { useMemo, useState } from "react";
 import { useI18n } from "@/i18n/I18nProvider";
 import type { Project, ProjectStatus } from "@/data/projects";
-import { Container } from "@/components/Container";
-import { Section } from "@/components/Section";
+import { Container } from "@/components/ui/Container";
+import { Section } from "@/components/ui/Section";
+import { Badge } from "@/components/ui/Badge";
+import { LinkCard } from "@/components/ui/LinkCard";
+import { Pill, PillButton } from "@/components/ui/Pill";
+import { Button } from "@/components/ui/Button";
 
 function statusLabelKey(status: ProjectStatus | undefined) {
   return `projects.statuses.${status ?? "concept"}` as const;
 }
 
 export function ProjectsPageClient({ projects }: { projects: Project[] }) {
-  const { lang, t } = useI18n();
+  const { lang, t, ta } = useI18n();
+  const [statusFilter, setStatusFilter] = useState<ProjectStatus | "all">("all");
+  const [tagFilter, setTagFilter] = useState<string | "all">("all");
+
+  const tags = useMemo(() => {
+    const set = new Set<string>();
+    for (const project of projects) {
+      for (const tag of project.tags ?? []) set.add(tag);
+    }
+    return Array.from(set).sort((a, b) => a.localeCompare(b));
+  }, [projects]);
+
+  const filtered = useMemo(() => {
+    return projects.filter((project) => {
+      const statusOk = statusFilter === "all" ? true : project.status === statusFilter;
+      const tagOk = tagFilter === "all" ? true : (project.tags ?? []).includes(tagFilter);
+      return statusOk && tagOk;
+    });
+  }, [projects, statusFilter, tagFilter]);
+
+  function statusVariant(status: ProjectStatus) {
+    if (status === "active") return "good" as const;
+    if (status === "in_progress") return "warn" as const;
+    return "neutral" as const;
+  }
 
   return (
     <div className="bg-white dark:bg-zinc-950">
@@ -26,48 +55,105 @@ export function ProjectsPageClient({ projects }: { projects: Project[] }) {
         </Container>
       </div>
 
+      <Section id="projects-filters" title={t("pages.projects.filtersTitle")} lead={t("pages.projects.filtersLead")}>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-wrap items-center gap-2">
+            <Pill className="mr-1">{t("pages.projects.filters.status")}</Pill>
+            <PillButton isActive={statusFilter === "all"} onClick={() => setStatusFilter("all")}>
+              {t("pages.projects.filters.all")}
+            </PillButton>
+            <PillButton isActive={statusFilter === "active"} onClick={() => setStatusFilter("active")}>
+              {t(statusLabelKey("active"))}
+            </PillButton>
+            <PillButton isActive={statusFilter === "in_progress"} onClick={() => setStatusFilter("in_progress")}>
+              {t(statusLabelKey("in_progress"))}
+            </PillButton>
+            <PillButton isActive={statusFilter === "concept"} onClick={() => setStatusFilter("concept")}>
+              {t(statusLabelKey("concept"))}
+            </PillButton>
+          </div>
+
+          {tags.length ? (
+            <div className="flex flex-wrap items-center gap-2">
+              <Pill className="mr-1">{t("pages.projects.filters.tags")}</Pill>
+              <PillButton isActive={tagFilter === "all"} onClick={() => setTagFilter("all")}>
+                {t("pages.projects.filters.all")}
+              </PillButton>
+              {tags.map((tag) => (
+                <PillButton key={tag} isActive={tagFilter === tag} onClick={() => setTagFilter(tag)}>
+                  {tag}
+                </PillButton>
+              ))}
+            </div>
+          ) : null}
+        </div>
+      </Section>
+
       <Section id="projects-grid" title={t("pages.projects.gridTitle")} lead={t("pages.projects.gridLead")}>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <div
-              key={project.slug}
-              className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-white/15 dark:bg-zinc-950"
-            >
+          {filtered.map((project) => (
+            <LinkCard key={project.slug} href={`/projects/${project.slug}/`}>
               <div className="flex items-start justify-between gap-3">
                 <div className="text-base font-semibold text-zinc-950 dark:text-zinc-50">
                   {project.title[lang]}
                 </div>
-                <div className="inline-flex rounded-full border border-black/10 px-2 py-0.5 text-xs font-semibold text-zinc-700 dark:border-white/15 dark:text-zinc-300">
-                  {t(statusLabelKey(project.status))}
-                </div>
+                <Badge variant={statusVariant(project.status)}>
+                  {project.statusText?.[lang] ?? t(statusLabelKey(project.status))}
+                </Badge>
               </div>
 
               <p className="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-                {project.summary[lang]}
+                {project.oneLiner[lang]}
               </p>
 
-              <div className="mt-5 flex flex-wrap items-center gap-2">
-                <Link
-                  href={`/projects/${project.slug}/`}
-                  className="inline-flex h-10 items-center justify-center rounded-full bg-zinc-900 px-4 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
-                >
-                  {t("pages.projects.openProject")}
-                </Link>
+              {(project.tags ?? []).length ? (
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {(project.tags ?? []).slice(0, 3).map((tag) => (
+                    <Pill key={tag}>{tag}</Pill>
+                  ))}
+                </div>
+              ) : null}
+            </LinkCard>
+          ))}
+        </div>
+      </Section>
 
-                {(project.links ?? []).slice(0, 2).map((link) => (
-                  <a
-                    key={link.url}
-                    href={link.url}
-                    target={link.url.startsWith("/") ? undefined : "_blank"}
-                    rel={link.url.startsWith("/") ? undefined : "noreferrer"}
-                    className="inline-flex h-10 items-center justify-center rounded-full border border-black/10 bg-white px-4 text-sm font-semibold text-zinc-900 transition-colors hover:bg-black/5 dark:border-white/15 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-white/10"
-                  >
-                    {link.label}
-                  </a>
+      <Section id="projects-participate" title={t("pages.projects.participateTitle")} lead={t("pages.projects.participateLead")}>
+        <div className="grid gap-4 lg:grid-cols-12">
+          <div className="lg:col-span-8">
+            <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/15 dark:bg-zinc-950">
+              <ul className="space-y-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                {ta("pages.projects.participatePoints").map((item) => (
+                  <li key={item} className="flex gap-2">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
+                    <span>{item}</span>
+                  </li>
                 ))}
+              </ul>
+            </div>
+          </div>
+          <div className="lg:col-span-4">
+            <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/15 dark:bg-zinc-950">
+              <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
+                {t("pages.projects.participateCtaTitle")}
+              </div>
+              <p className="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                {t("pages.projects.participateCtaLead")}
+              </p>
+              <div className="mt-5">
+                <Button href="/contacts/">{t("pages.projects.participateCta")}</Button>
               </div>
             </div>
-          ))}
+          </div>
+        </div>
+
+        <div className="mt-10">
+          <Link
+            href="/"
+            className="text-sm font-semibold text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
+          >
+            {t("pages.projects.backHome")}
+          </Link>
         </div>
       </Section>
     </div>

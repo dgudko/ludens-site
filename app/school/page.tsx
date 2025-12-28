@@ -1,14 +1,22 @@
 "use client";
 
-import Link from "next/link";
 import { useI18n } from "@/i18n/I18nProvider";
-import { Container } from "@/components/Container";
-import { Section } from "@/components/Section";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Container } from "@/components/ui/Container";
+import { LinkCard } from "@/components/ui/LinkCard";
+import { Section } from "@/components/ui/Section";
 import { SubstackEmbed } from "@/components/SubstackEmbed";
 import { SUBSTACK_EMBED_URL } from "@/config/substack";
 
+type InfoCard = { title: string; body: string };
+type FaqItem = { q: string; a: string };
+
 export default function SchoolPage() {
-  const { t, ta } = useI18n();
+  const { t, ta, tv } = useI18n();
+  const forWhom = tv<InfoCard[]>("pages.school.forWhomCards") ?? [];
+  const formats = tv<InfoCard[]>("pages.school.formatsCards") ?? [];
+  const faq = tv<FaqItem[]>("pages.school.faq") ?? [];
 
   return (
     <div className="bg-white dark:bg-zinc-950">
@@ -21,108 +29,113 @@ export default function SchoolPage() {
             {t("pages.school.lead")}
           </p>
           <div className="mt-6">
-            <Link
-              href="/contacts/"
-              className="inline-flex h-11 items-center justify-center rounded-full bg-zinc-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
-            >
-              {t("pages.school.cta")}
-            </Link>
+            <Button href="/contacts/">{t("pages.school.cta")}</Button>
           </div>
         </Container>
       </div>
 
-      <Section id="school-approach" title={t("pages.school.approachTitle")} lead={t("pages.school.approachLead")}>
+      <Section id="school-for-whom" title={t("pages.school.forWhomTitle")} lead={t("pages.school.forWhomLead")}>
         <div className="grid gap-4 lg:grid-cols-3">
-          {ta("pages.school.approachPoints").map((point) => (
-            <div
-              key={point}
-              className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-white/15 dark:bg-zinc-950"
-            >
-              <div className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">{point}</div>
-            </div>
+          {forWhom.map((item) => (
+            <Card key={item.title}>
+              <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">{item.title}</div>
+              <div className="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-300">{item.body}</div>
+            </Card>
           ))}
         </div>
       </Section>
 
-      <Section id="school-program" title={t("pages.school.programTitle")} lead={t("pages.school.programLead")}>
-        <div className="grid gap-4 lg:grid-cols-2">
-          <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/15 dark:bg-zinc-950">
-            <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
-              {t("pages.school.modulesTitle")}
-            </div>
-            <ul className="mt-4 space-y-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-              {ta("pages.school.modules").map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/15 dark:bg-zinc-950">
-            <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
-              {t("pages.school.outcomesTitle")}
-            </div>
-            <ul className="mt-4 space-y-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-              {ta("pages.school.outcomes").map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+      <Section id="school-what" title={t("pages.school.whatTitle")} lead={t("pages.school.whatLead")}>
+        <Card>
+          <ul className="space-y-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+            {ta("pages.school.whatPoints").slice(0, 5).map((item) => (
+              <li key={item} className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </Card>
       </Section>
 
       <Section id="school-formats" title={t("pages.school.formatsTitle")} lead={t("pages.school.formatsLead")}>
         <div className="grid gap-4 lg:grid-cols-3">
-          {ta("pages.school.formats").map((item) => (
-            <div
-              key={item}
-              className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-white/15 dark:bg-zinc-950"
-            >
-              <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">{item}</div>
-            </div>
+          {formats.map((item) => (
+            <Card key={item.title}>
+              <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">{item.title}</div>
+              <div className="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-300">{item.body}</div>
+            </Card>
           ))}
         </div>
       </Section>
 
-      <Section id="school-cta" title={t("pages.school.finalTitle")} lead={t("pages.school.finalLead")}>
-        <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/15 dark:bg-zinc-950">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-              {t("pages.school.finalBody")}
-            </div>
-            <Link
-              href="/contacts/"
-              className="inline-flex h-11 items-center justify-center rounded-full bg-zinc-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
-            >
-              {t("pages.school.cta")}
-            </Link>
-          </div>
+      <Section id="school-process" title={t("pages.school.processTitle")} lead={t("pages.school.processLead")}>
+        <div className="grid gap-4 lg:grid-cols-2">
+          <Card>
+            <ol className="space-y-3 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+              {ta("pages.school.processSteps").slice(0, 5).map((step, index) => (
+                <li key={step} className="flex gap-3">
+                  <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-black/5 text-xs font-semibold text-zinc-700 dark:bg-white/10 dark:text-zinc-200">
+                    {index + 1}
+                  </span>
+                  <span>{step}</span>
+                </li>
+              ))}
+            </ol>
+          </Card>
+          <Card>
+            <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">{t("pages.school.outcomesTitle")}</div>
+            <ul className="mt-4 space-y-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+              {ta("pages.school.outcomes").slice(0, 5).map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
         </div>
       </Section>
+
+      {faq.length ? (
+        <Section id="school-faq" title={t("pages.school.faqTitle")} lead={t("pages.school.faqLead")}>
+          <div className="grid gap-3">
+            {faq.slice(0, 6).map((item) => (
+              <details
+                key={item.q}
+                className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm open:shadow-md dark:border-white/15 dark:bg-zinc-950"
+              >
+                <summary className="cursor-pointer select-none text-sm font-semibold text-zinc-950 dark:text-zinc-50">
+                  {item.q}
+                </summary>
+                <p className="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-300">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </Section>
+      ) : null}
 
       {SUBSTACK_EMBED_URL ? (
         <Section id="school-waitlist" title={t("pages.school.waitlistTitle")} lead={t("pages.school.waitlistLead")}>
           <div className="grid gap-6 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm dark:border-white/15 dark:bg-zinc-950">
-                <div className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-                  {t("pages.school.waitlistBody")}
+              <Card>
+                <div className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">{t("pages.school.waitlistBody")}</div>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  <LinkCard href={t("pages.school.discordInvite")} external>
+                    <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">{t("pages.school.discordCta")}</div>
+                    <div className="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                      {t("pages.school.discordLead")}
+                    </div>
+                  </LinkCard>
+                  <LinkCard href="/contacts/">
+                    <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">{t("pages.school.contactsCta")}</div>
+                    <div className="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                      {t("pages.school.contactsLead")}
+                    </div>
+                  </LinkCard>
                 </div>
-                <div className="mt-4">
-                  <a
-                    className="text-sm font-semibold text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
-                    href={t("pages.school.discordInvite")}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {t("pages.school.discordCta")}
-                  </a>
-                </div>
-              </div>
+              </Card>
             </div>
 
             <div className="lg:col-span-5">

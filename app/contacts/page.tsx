@@ -1,9 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useI18n } from "@/i18n/I18nProvider";
-import { Container } from "@/components/Container";
-import { Section } from "@/components/Section";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Container } from "@/components/ui/Container";
+import { Section } from "@/components/ui/Section";
 
 export default function ContactsPage() {
   const { t } = useI18n();
@@ -27,7 +28,8 @@ export default function ContactsPage() {
 
       <Section id="contacts" title={t("contacts.title")} lead={t("contacts.lead")}>
         <div className="grid gap-4 lg:grid-cols-12">
-          <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-white/15 dark:bg-zinc-950 lg:col-span-7">
+          <div className="lg:col-span-7">
+            <Card>
             <dl className="grid gap-4 sm:grid-cols-2">
               <div>
                 <dt className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
@@ -119,34 +121,36 @@ export default function ContactsPage() {
                       rel="noreferrer"
                     >
                       {t("contacts.discord3Value")}
-                    </a>
-                  </dd>
-                </div>
-              ) : null}
+                  </a>
+                </dd>
+              </div>
+            ) : null}
             </dl>
+            </Card>
           </div>
 
-          <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-white/15 dark:bg-zinc-950 lg:col-span-5">
-            <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
-              {t("pages.contacts.nextTitle")}
-            </div>
-            <p className="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-              {t("pages.contacts.nextLead")}
-            </p>
-            <div className="mt-6 flex flex-col gap-2">
-              <a
-                className="inline-flex h-11 w-full items-center justify-center rounded-full bg-zinc-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
-                href={`mailto:${t("contacts.emailValue")}`}
-              >
-                {t("contacts.writeCta")}
-              </a>
-              <Link
-                href="/projects/"
-                className="inline-flex h-11 w-full items-center justify-center rounded-full border border-black/10 bg-white px-5 text-sm font-semibold text-zinc-900 transition-colors hover:bg-black/5 dark:border-white/15 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-white/10"
-              >
-                {t("pages.contacts.seeProjects")}
-              </Link>
-            </div>
+          <div className="lg:col-span-5">
+            <Card className="p-6">
+              <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
+                {t("pages.contacts.nextTitle")}
+              </div>
+              <p className="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                {t("pages.contacts.nextLead")}
+              </p>
+              <div className="mt-6">
+                <Button href={telegramHref(t("contacts.telegram2Value"))} external>
+                  {t("contacts.writeCta")}
+                </Button>
+              </div>
+              <div className="mt-4 text-sm text-zinc-600 dark:text-zinc-300">
+                <a
+                  className="font-semibold text-zinc-900 underline underline-offset-4 hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
+                  href={`mailto:${t("contacts.emailValue")}`}
+                >
+                  {t("contacts.emailValue")}
+                </a>
+              </div>
+            </Card>
           </div>
         </div>
       </Section>

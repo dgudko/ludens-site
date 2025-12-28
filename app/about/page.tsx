@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useI18n } from "@/i18n/I18nProvider";
-import { Container } from "@/components/Container";
-import { Section } from "@/components/Section";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Container } from "@/components/ui/Container";
+import { LinkCard } from "@/components/ui/LinkCard";
+import { Section } from "@/components/ui/Section";
 
 type SocialLink = { label: string; url: string };
 type Person = {
@@ -26,7 +28,7 @@ function initials(name: string): string {
 }
 
 export default function AboutPage() {
-  const { t, tv } = useI18n();
+  const { t, ta, tv } = useI18n();
   const people = tv<Person[]>("about.people") ?? [];
 
   return (
@@ -39,16 +41,42 @@ export default function AboutPage() {
           <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-300 sm:text-lg">
             {t("pages.about.lead")}
           </p>
+          <div className="mt-6">
+            <Button href="/contacts/">{t("pages.about.cta")}</Button>
+          </div>
         </Container>
       </div>
+
+      <Section id="about-what" title={t("pages.about.whatTitle")} lead={t("pages.about.whatLead")}>
+        <Card>
+          <ul className="space-y-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+            {ta("pages.about.whatPoints").slice(0, 5).map((item) => (
+              <li key={item} className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </Card>
+      </Section>
+
+      <Section id="about-principles" title={t("pages.about.principlesTitle")} lead={t("pages.about.principlesLead")}>
+        <Card>
+          <ul className="space-y-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+            {ta("pages.about.principlesPoints").slice(0, 5).map((item) => (
+              <li key={item} className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </Card>
+      </Section>
 
       <Section id="team" title={t("pages.about.teamTitle")} lead={t("pages.about.teamLead")}>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {people.map((person) => (
-            <div
-              key={person.name}
-              className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition-shadow hover:shadow-md dark:border-white/15 dark:bg-zinc-950"
-            >
+            <Card key={person.name}>
               <div className="flex items-start gap-4">
                 {person.photoSrc ? (
                   <div className="relative h-14 w-14 overflow-hidden rounded-2xl border border-black/5 bg-zinc-100 dark:border-white/10 dark:bg-zinc-900">
@@ -67,18 +95,12 @@ export default function AboutPage() {
                 )}
 
                 <div>
-                  <div className="text-base font-semibold text-zinc-950 dark:text-zinc-50">
-                    {person.name}
-                  </div>
-                  <div className="mt-1 text-sm font-medium text-zinc-600 dark:text-zinc-300">
-                    {person.role}
-                  </div>
+                  <div className="text-base font-semibold text-zinc-950 dark:text-zinc-50">{person.name}</div>
+                  <div className="mt-1 text-sm font-medium text-zinc-600 dark:text-zinc-300">{person.role}</div>
                 </div>
               </div>
 
-              <p className="mt-4 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-                {person.bio}
-              </p>
+              <p className="mt-4 text-sm leading-6 text-zinc-600 dark:text-zinc-300">{person.bio}</p>
 
               {person.links?.length ? (
                 <div className="mt-5 flex flex-wrap gap-2">
@@ -88,24 +110,36 @@ export default function AboutPage() {
                       href={link.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex h-9 items-center justify-center rounded-full border border-black/10 bg-white px-3 text-sm font-semibold text-zinc-900 transition-colors hover:bg-black/5 dark:border-white/15 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-white/10"
+                      className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-2 text-sm font-semibold text-zinc-900 transition-colors hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500/25 dark:border-white/15 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-white/10"
                     >
                       {link.label}
                     </a>
                   ))}
                 </div>
               ) : null}
-            </div>
+            </Card>
           ))}
         </div>
+      </Section>
 
-        <div className="mt-8">
-          <Link
-            href="/contacts/"
-            className="inline-flex h-11 items-center justify-center rounded-full bg-zinc-900 px-5 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
-          >
-            {t("pages.about.cta")}
-          </Link>
+      <Section id="about-next" title={t("pages.about.nextTitle")} lead={t("pages.about.nextLead")}>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <LinkCard href="/projects/">
+            <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
+              {t("pages.about.nextProjectsTitle")}
+            </div>
+            <div className="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+              {t("pages.about.nextProjectsLead")}
+            </div>
+          </LinkCard>
+          <LinkCard href="/school/">
+            <div className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
+              {t("pages.about.nextSchoolTitle")}
+            </div>
+            <div className="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+              {t("pages.about.nextSchoolLead")}
+            </div>
+          </LinkCard>
         </div>
       </Section>
     </div>

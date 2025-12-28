@@ -1,14 +1,10 @@
 {
   "meta": {
     "title": "Ludens",
-    "description": "Dimitry Gudko — games, production, mentoring, and consulting. A clean portal: projects, school, and 1:1 sessions."
+    "description": "Dimitry Gudko — games, production, mentoring. A clean portal: projects, school, and 1:1."
   },
-  "brand": {
-    "name": "Ludens"
-  },
-  "common": {
-    "learnMore": "Learn more"
-  },
+  "brand": { "name": "Ludens" },
+  "common": { "learnMore": "Learn more" },
   "nav": {
     "home": "Home",
     "school": "School",
@@ -23,13 +19,11 @@
     "ariaSwitchToEn": "Switch to English",
     "ariaSwitchToRu": "Switch to Russian"
   },
-  "header": {
-    "menu": "Menu",
-    "close": "Close"
-  },
+  "header": { "menu": "Menu", "close": "Close" },
+
   "hero": {
     "title": "Drop the noise. Hold your line.",
-    "subtitle": "I'm Dimitry Gudko. I help people stepping into the new: get grounded, regain the spark, and move with clarity — together.",
+    "subtitle": "I’m Dimitry Gudko. I help people stepping into the new: get grounded, regain the spark, and move with clarity — together.",
     "cta": {
       "school": "School",
       "projects": "Projects",
@@ -37,64 +31,27 @@
       "about": "About me"
     }
   },
+
   "overview": {
-    "title": "Where to go next",
+    "title": "Start here",
     "items": [
-      {
-        "title": "Projects",
-        "description": "Live things you can join. Some are open source, all are made honestly.",
-        "href": "#projects"
-      },
-      {
-        "title": "School",
-        "description": "Self-support, clarity, team, and a prototype start.",
-        "href": "#school"
-      },
-      {
-        "title": "Consulting",
-        "description": "If you're drifting — we'll get your line back and build a simple plan.",
-        "href": "#consulting"
-      },
-      {
-        "title": "Contacts",
-        "description": "Message me — I'll suggest the next step.",
-        "href": "#contacts"
-      }
+      { "title": "Projects", "description": "Live things you can join and build.", "href": "#projects" },
+      { "title": "School", "description": "Clarity, self-support, team, and a prototype start.", "href": "#school" },
+      { "title": "Consulting", "description": "If you’re drifting — we’ll get your line back.", "href": "#consulting" },
+      { "title": "Contacts", "description": "Message me — I’ll suggest the next step.", "href": "#contacts" }
     ]
   },
-  "school": {
-    "title": "School",
-    "lead": "A school about self-support and a path to your project: quieter inside, clearer in your head, concrete in your steps.",
-    "whatYouLearnTitle": "What you get",
-    "whatYouLearn": [
-      "You find what drives you consistently (not a flash)",
-      "You shape a project vision and first decisions",
-      "You start a prototype (or understand what blocks it)",
-      "It becomes easier to hold the line when it's noisy and scary"
-    ],
-    "formatsTitle": "Formats",
-    "formats": ["1:1 mentoring", "Reviews", "Mini-course / practice", "On-going support"],
-    "forWhomTitle": "Who it's for",
-    "forWhom": ["People stepping into the new and getting lost", "Indies and early teams", "\"Not creative\" people who want to open the channel"],
-    "cta": "Contact"
-  },
+
   "projects": {
-    "title": "Projects",
-    "lead": "Live projects and ideas. If you want to be in the work — we'll find your place.",
-    "statuses": {
-      "active": "live",
-      "in_progress": "in progress",
-      "concept": "concept"
-    }
+    "statuses": { "active": "live", "in_progress": "in progress", "concept": "concept" }
   },
+
   "about": {
-    "title": "About",
-    "lead": "Simplicity, reality, and a quiet drive — together.",
     "people": [
       {
         "name": "Dimitry Gudko",
         "role": "Production • Games • 1:1 mentoring",
-        "bio": "I help you get grounded, separate noise from what's real, and plan a path to the goal in a chaotic context — simply and humanly.",
+        "bio": "I help you get grounded, separate noise from what’s real, and plan a path to the goal in a chaotic context — simply and humanly.",
         "photoSrc": "",
         "photoAlt": "Portrait of Dimitry Gudko",
         "links": [
@@ -105,24 +62,10 @@
       }
     ]
   },
-  "consulting": {
-    "title": "Consulting",
-    "lead": "When you step into the new and start drifting — I help you see reality, regain your line, and turn it into steps.",
-    "whatTitle": "Typical requests",
-    "what": [
-      "I want to do X, never did it — where do I start?",
-      "My creative work feels bland — how do I bring it to life?",
-      "A team started strong and got stuck — how do we regain momentum?",
-      "I'm \"the leader\" but I'm running after everyone — how do I fix it?",
-      "I feel unfree even alone — how do I become freer?"
-    ],
-    "forWhomTitle": "Who it's for",
-    "forWhom": ["Individuals", "Teams", "Game dev & creative work", "Decision-makers"],
-    "cta": "Request a session"
-  },
+
   "contacts": {
     "title": "Contacts",
-    "lead": "One small step to \"you belong here\". Message me as you are — I'll reply.",
+    "lead": "One small step to “you belong here”. Message me as you are — I’ll reply.",
     "emailLabel": "Email",
     "emailValue": "ludens.school@gmail.com",
     "telegramLabel": "Telegram (channel)",
@@ -137,32 +80,130 @@
     "discord3Value": "https://discord.gg/7qtrx9Jm8f",
     "writeCta": "Write a message"
   },
-  "footer": {
-    "copyright": "© {year} Ludens"
+
+  "footer": { "copyright": "© {year} Ludens" },
+
+  "home": {
+    "consulting": {
+      "points": [
+        "You want to do X, never did it — where do you start?",
+        "Your creative work feels bland — how do you bring it to life?",
+        "A team started strong and got stuck — how do you regain momentum?",
+        "You lead, but you’re running after everyone — how do you fix it?",
+        "You feel unfree even alone — how do you become freer?"
+      ]
+    }
   },
-  "content": {
-    "howToTitle": "Where to edit content",
-    "howToBody": "Texts: src/i18n/en.json and src/i18n/ru.json. Projects for /projects/*: src/data/projects.ts. Images: public/images/**."
-  },
+
   "pages": {
     "projects": {
       "title": "Projects",
-      "lead": "Project cards with a short summary and separate pages for deeper context.",
+      "lead": "A catalog of projects with separate pages — clear “what / status / how to join”.",
+      "filtersTitle": "Filters",
+      "filtersLead": "Pick a status or tag — the page updates instantly (no reload).",
+      "filters": { "status": "Status", "tags": "Tags", "all": "All" },
       "gridTitle": "Project list",
-      "gridLead": "Pick a project to open details.",
-      "openProject": "Open project",
-      "allProjects": "All projects",
+      "gridLead": "Open a project — the page explains what it is and how to join.",
+      "openProject": "Open",
       "back": "Back to projects",
       "notFound": "Project not found",
-      "detailsTitle": "Details",
-      "detailsLead": "Short text and context. You can expand with screenshots, links, and progress logs.",
-      "noImageTitle": "No image yet",
-      "noImageLead": "Add an image to public/images and wire it in."
+      "participateTitle": "How to participate",
+      "participateLead": "Even if you’re new — there’s a place.",
+      "participatePoints": [
+        "Playtest and give feedback (what’s great / what’s annoying / what’s unclear).",
+        "Help with content: guides, onboarding, UX for new players.",
+        "Contribute: code, infra, design, community — your skill is welcome."
+      ],
+      "participateCtaTitle": "Ready to jump in?",
+      "participateCtaLead": "Write a short message — I’ll suggest the best entry point.",
+      "participateCta": "Write me",
+      "backHome": "Back to home"
     },
+
+    "project": {
+      "ctaJoin": "Join",
+      "ctaFollow": "Follow / Write",
+      "heroCtaTitle": "One action",
+      "heroCtaLead": "Pick the simplest first step — the rest will be clear.",
+      "heroCtaHint": "Prefer Telegram for fast entry; email is fine too.",
+      "whatTitle": "What it is",
+      "whatLead": "Short and concrete — no fluff.",
+      "statusTitle": "Current status",
+      "statusLead": "What’s done, what’s now, what’s next.",
+      "roadmap": { "done": "Done", "now": "Now", "next": "Next" },
+      "participationTitle": "How you can participate",
+      "participationLead": "Pick one — and you’re in.",
+      "linksTitle": "Links",
+      "linksLead": "Repo, Discord, docs — what exists today.",
+      "linksOpen": "Open",
+      "navTitle": "Next",
+      "navLead": "Where to go from here.",
+      "navBack": "Back to projects",
+      "navBackLead": "Browse other projects and pick another entry point.",
+      "navContacts": "Contacts",
+      "navContactsLead": "Message me — we’ll decide the next step."
+    },
+
+    "about": {
+      "title": "About",
+      "lead": "Who I am and how I work.",
+      "whatTitle": "What I do",
+      "whatLead": "A few things I’m strongest at.",
+      "whatPoints": [
+        "Ground you in reality: what is true, what matters, what blocks you",
+        "Build a simple plan in chaos (and keep momentum)",
+        "Production for games and creative teams",
+        "Taste and clarity: make the work feel alive, not bland"
+      ],
+      "principlesTitle": "Principles",
+      "principlesLead": "How I keep it clear and human.",
+      "principlesPoints": [
+        "Less noise, more truth",
+        "One next step that you can actually do",
+        "Respect without softness: direct, not cruel",
+        "We build a “home” feeling: safe enough to be real",
+        "A spark when it’s time to move"
+      ],
+      "teamTitle": "Team",
+      "teamLead": "Short summaries with profile links.",
+      "cta": "Contact",
+      "nextTitle": "Next steps",
+      "nextLead": "Pick a direction — and don’t get lost.",
+      "nextProjectsTitle": "Projects",
+      "nextProjectsLead": "Open a project page and see how to join.",
+      "nextSchoolTitle": "School",
+      "nextSchoolLead": "See formats, process, and the waitlist."
+    },
+
     "school": {
       "title": "School",
       "lead": "Self-support, clarity, and a path to your project — without spinning and noise.",
-      "cta": "Contact",
+      "cta": "Write",
+      "forWhomTitle": "For whom",
+      "forWhomLead": "Three common starting points.",
+      "forWhomCards": [
+        {
+          "title": "Beginners",
+          "body": "You want to make games, but you don’t know where to start and you keep drifting."
+        },
+        {
+          "title": "Indies",
+          "body": "You have ideas and skill, but you want clarity, taste, and a real path to shipping."
+        },
+        {
+          "title": "Teams",
+          "body": "You started strong, then got stuck. You need alignment, roles, and momentum."
+        }
+      ],
+      "whatTitle": "What you get",
+      "whatLead": "Concrete outcomes, not motivation quotes.",
+      "whatPoints": [
+        "Quieter inside: less doubt and spinning",
+        "Project vision and first decisions",
+        "Prototype start and clear next steps",
+        "Team map: who does what and why",
+        "A plan from “now” to “it happened”"
+      ],
       "approachTitle": "Approach",
       "approachLead": "Calm, direct, and practical.",
       "approachPoints": [
@@ -174,40 +215,78 @@
       "programLead": "A skeleton adapted to your level and context.",
       "modulesTitle": "Modules",
       "modules": [
-        "Self-support: what's yours vs what's noise",
+        "Self-support: what’s yours vs what’s noise",
         "Idea and project vision",
         "First steps: prototype and quality criteria",
         "Teamwork without friction",
-        "A path plan: from \"now\" to \"it happened\""
+        "A path plan: from “now” to “it happened”"
       ],
       "outcomesTitle": "Outcomes",
       "outcomes": ["Quieter and clearer inside", "Project vision and first decisions", "Prototype start and clear next steps"],
       "formatsTitle": "Formats",
-      "formatsLead": "We'll pick what fits your pace and budget.",
+      "formatsLead": "We’ll pick what fits your pace and budget.",
       "formats": ["1:1 mentoring", "Reviews", "Mini-course / practice", "On-going support"],
+      "formatsCards": [
+        { "title": "1:1 mentoring", "body": "Clarity + plan + next step. Calm, direct, effective." },
+        { "title": "Reviews", "body": "Bring your project. We sharpen the vision and decisions." },
+        { "title": "Project support", "body": "Ongoing help while you ship: rhythm, boundaries, momentum." }
+      ],
+      "processTitle": "Process",
+      "processLead": "Simple steps. No magic.",
+      "processSteps": [
+        "A short message: what you do, where you’re stuck, what outcome you want",
+        "A call: we ground in reality and find the real problem",
+        "A plan: next step, criteria, and rhythm",
+        "Action + feedback loop"
+      ],
+      "faqTitle": "FAQ",
+      "faqLead": "Common questions — short answers.",
+      "faq": [
+        {
+          "q": "Do I need to be in game dev?",
+          "a": "No. The core is self-support, clarity, and shipping. Game dev is just one domain."
+        },
+        {
+          "q": "What is a good outcome?",
+          "a": "You feel quieter inside, you have a vision, you start a prototype, and you see the next steps clearly."
+        },
+        {
+          "q": "Do you help teams?",
+          "a": "Yes — especially early teams: alignment, roles, decisions, and momentum."
+        },
+        {
+          "q": "Is it long-term or one-off?",
+          "a": "Both. We can do one session, or a longer support track if it fits the case."
+        },
+        {
+          "q": "How do I start?",
+          "a": "Write a short message. I’ll suggest the best entry point."
+        }
+      ],
       "finalTitle": "Next step",
       "finalLead": "Write what you want to do and where you got stuck.",
-      "finalBody": "I'll reply with a good starting point and the right format.",
+      "finalBody": "I’ll reply with a good starting point and the right format.",
       "waitlistTitle": "Waitlist",
-      "waitlistLead": "Leave your email — I'll message you when the school starts forming.",
-      "waitlistBody": "This is not a social network. Just a list so we don't lose each other. From time to time — a short, practical email.",
+      "waitlistLead": "Leave your email — I’ll message you when the school starts forming.",
+      "waitlistBody": "This is not a social network. Just a list so we don’t lose each other. From time to time — a short, practical email.",
       "discordInvite": "https://discord.gg/7qtrx9Jm8f",
-      "discordCta": "Join Discord (School)"
+      "discordCta": "Join Discord (School)",
+      "discordLead": "Community lives here. Ask questions, meet people, share ideas.",
+      "contactsCta": "Write me",
+      "contactsLead": "If you want to join or have a case — message me directly."
     },
-    "about": {
-      "title": "About",
-      "lead": "People behind the work.",
-      "teamTitle": "Team",
-      "teamLead": "Short summaries with profile links.",
-      "cta": "Contact"
-    },
+
     "consulting": {
       "title": "Consulting",
-      "lead": "1:1 sessions: see reality, regain your line, build a plan. $100-$150 per session, no hard time limit. For students/first-time teams — the first session is free.",
+      "lead": "1:1 sessions: see reality, regain your line, build a plan. $100–$150 per session, no hard time limit. For students/first-time teams — the first session is free.",
       "cta": "Write me",
       "whyTitle": "Why it helps",
-      "whyLead": "When it's noisy inside, it's easy to miss. We'll make it quieter and sharper.",
-      "whyPoints": ["You step into the new and lose the spark.", "You lead, but you carry everything and start falling apart.", "A team got stuck and stopped moving."],
+      "whyLead": "When it’s noisy inside, it’s easy to miss. We’ll make it quieter and sharper.",
+      "whyPoints": [
+        "You step into the new and lose the spark.",
+        "You lead, but you carry everything and start falling apart.",
+        "A team got stuck and stopped moving."
+      ],
       "howTitle": "How it works",
       "howLead": "A simple funnel: context → clarity → plan → motion.",
       "flowTitle": "Flow",
@@ -216,8 +295,9 @@
       "topics": ["Production and moving to a goal in chaos", "Leadership and boundaries", "Creative clarity and taste", "Teams and collaboration"],
       "finalTitle": "CTA",
       "finalLead": "Ready to move?",
-      "finalBody": "Write 3 lines: 1) what you're doing 2) where you're stuck 3) what outcome you want."
+      "finalBody": "Write 3 lines: 1) what you’re doing 2) where you’re stuck 3) what outcome you want."
     },
+
     "contacts": {
       "title": "Contacts",
       "lead": "One page to reach out.",
